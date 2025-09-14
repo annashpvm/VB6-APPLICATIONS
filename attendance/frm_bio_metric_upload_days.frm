@@ -2457,8 +2457,11 @@ Public Sub find_dates()
     End If
     
     end_date = DateValue(Str(mmon) + "/" + Str(mdays) + "/" + cmb_year.Text) + 1
-    st_date = end_date - Day(end_date - 1)
+    
+''    st_date = end_date - Day(end_date - 1)
+    
     monthend_date.Value = end_date - 1
+
 
 
     If end_date.Value > Now Then

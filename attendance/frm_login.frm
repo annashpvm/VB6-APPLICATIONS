@@ -16,8 +16,8 @@ Begin VB.Form frm_login
       Strikethrough   =   0   'False
    EndProperty
    LinkTopic       =   "Form2"
-   ScaleHeight     =   3195
-   ScaleWidth      =   4680
+   ScaleHeight     =   10935
+   ScaleWidth      =   20160
    WindowState     =   2  'Maximized
    Begin VB.TextBox txt_password2 
       BeginProperty Font 
@@ -156,7 +156,7 @@ Private Sub exit_Click()
 End Sub
 
 Private Sub mill_cmb_click()
-    password.Text = ""
+    Password.Text = ""
 End Sub
 
 Private Sub Continue_Click()
@@ -186,7 +186,7 @@ Private Sub Continue_Click()
     finyear = cmb_year.ItemData(cmb_year.ListIndex)
     
     
-    If password.Text = superuser Then
+    If Password.Text = superuser Then
        
        If UCase(txt_password2.Text) = adminuser Then
           adminpw = 1
@@ -200,7 +200,7 @@ Private Sub Continue_Click()
        frm_login.Visible = False
        Unload frm_login
     Else
-       If password.Text = "CASUAL" Then
+       If Password.Text = "CASUAL" Then
           casual = "Y"
           MAINMENU.Show
           frm_login.Visible = False
@@ -234,11 +234,11 @@ Private Sub Form_Load()
     ''cmb_year.ListIndex = 15
     
     
-    password.Text = "attn"
+    Password.Text = "attn"
 End Sub
 
 Private Sub password_KeyPress(KeyAscii As Integer)
-     If KeyAscii = 13 And password.Text <> "" Then Continue_Click
+     If KeyAscii = 13 And Password.Text <> "" Then Continue_Click
 End Sub
 
 

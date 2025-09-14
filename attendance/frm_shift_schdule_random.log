@@ -1,0 +1,3 @@
+Line 360: Class MSFlexGridLib.MSFlexGrid of control flx_data was not a loaded control class.
+Line 463: Class MSComCtl2.DTPicker of control st_date was not a loaded control class.
+Line 475: Class MSComCtl2.DTPicker of control end_date was not a loaded control class.

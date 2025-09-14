@@ -1,0 +1,293 @@
+VERSION 5.00
+Begin VB.Form VDA_ENTRY 
+   BackColor       =   &H00FFFFC0&
+   Caption         =   "VDA ENTRY"
+   ClientHeight    =   3195
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   4680
+   LinkTopic       =   "Form1"
+   MDIChild        =   -1  'True
+   ScaleHeight     =   3195
+   ScaleWidth      =   4680
+   WindowState     =   2  'Maximized
+   Begin VB.Frame vda_frame 
+      BackColor       =   &H00C0E0FF&
+      Caption         =   "VARIABLE DEARNESS ALLOWANCE ENTRY"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FF0000&
+      Height          =   5670
+      Left            =   1335
+      TabIndex        =   0
+      Top             =   1260
+      Visible         =   0   'False
+      Width           =   9330
+      Begin VB.ComboBox year_cmb 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   420
+         Left            =   7110
+         TabIndex        =   6
+         Top             =   675
+         Width           =   1335
+      End
+      Begin VB.ComboBox month_cmb 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   2445
+         TabIndex        =   5
+         Top             =   705
+         Width           =   2655
+      End
+      Begin VB.TextBox vda_amount 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   555
+         Left            =   2475
+         TabIndex        =   4
+         Top             =   2190
+         Width           =   2550
+      End
+      Begin VB.CommandButton Save 
+         Caption         =   "&Save"
+         Height          =   1095
+         Left            =   795
+         TabIndex        =   3
+         Top             =   3990
+         Width           =   1230
+      End
+      Begin VB.CommandButton refresh 
+         Caption         =   "&Refresh"
+         Height          =   1095
+         Left            =   2340
+         TabIndex        =   2
+         Top             =   4005
+         Width           =   1230
+      End
+      Begin VB.CommandButton exit2 
+         Caption         =   "&Exit"
+         Height          =   1095
+         Left            =   3825
+         TabIndex        =   1
+         Top             =   3990
+         Width           =   1230
+      End
+      Begin VB.Label Label1 
+         BackColor       =   &H00C0E0FF&
+         Caption         =   "MONTH"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00C00000&
+         Height          =   330
+         Left            =   720
+         TabIndex        =   9
+         Top             =   735
+         Width           =   1140
+      End
+      Begin VB.Label Label2 
+         BackColor       =   &H00C0E0FF&
+         Caption         =   "YEAR"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00C00000&
+         Height          =   285
+         Left            =   5955
+         TabIndex        =   8
+         Top             =   750
+         Width           =   885
+      End
+      Begin VB.Line Line1 
+         X1              =   0
+         X2              =   9315
+         Y1              =   1545
+         Y2              =   1545
+      End
+      Begin VB.Label Label3 
+         BackColor       =   &H00C0E0FF&
+         Caption         =   "VDA AMOUNT"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00C00000&
+         Height          =   480
+         Left            =   735
+         TabIndex        =   7
+         Top             =   2280
+         Width           =   2835
+      End
+      Begin VB.Line Line2 
+         X1              =   15
+         X2              =   9330
+         Y1              =   3450
+         Y2              =   3450
+      End
+   End
+End
+Attribute VB_Name = "VDA_ENTRY"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Private Sub exit2_Click()
+     Unload Me
+End Sub
+
+Private Sub Form_Load()
+     vda_frame.Visible = True
+     With month_cmb
+        .AddItem "January"
+        .ItemData(.NewIndex) = 1
+        .AddItem "February"
+        .ItemData(.NewIndex) = 2
+        .AddItem "March"
+        .ItemData(.NewIndex) = 3
+        .AddItem "April"
+        .ItemData(.NewIndex) = 4
+        .AddItem "May"
+        .ItemData(.NewIndex) = 5
+        .AddItem "June"
+        .ItemData(.NewIndex) = 6
+        .AddItem "July"
+        .ItemData(.NewIndex) = 7
+        .AddItem "Auguest"
+        .ItemData(.NewIndex) = 8
+        .AddItem "September"
+        .ItemData(.NewIndex) = 9
+        .AddItem "October"
+        .ItemData(.NewIndex) = 10
+        .AddItem "November"
+        .ItemData(.NewIndex) = 11
+        .AddItem "December"
+        .ItemData(.NewIndex) = 12
+    End With
+    With year_cmb
+        .AddItem "2002"
+        .AddItem "2003"
+        .AddItem "2004"
+        .AddItem "2005"
+        .AddItem "2006"
+        .AddItem "2007"
+        .AddItem "2008"
+        .AddItem "2009"
+        .AddItem "2010"
+        .AddItem "2011"
+        .AddItem "2012"
+        .AddItem "2013"
+    End With
+    year_cmb.Text = "2003"
+    pay = "Provider=SQLOLEDB.1;Password=serdat;Persist Security Info=True;User ID=sa;DATABASE=anna_test;Data Source=servalldata"
+
+End Sub
+
+Private Sub vda_amount_KeyPress(KeyAscii As Integer)
+  On Error GoTo err_handler
+    chk_keyascii vda_amount, "N", 5, 2, KeyAscii
+    Exit Sub
+err_handler:
+    chk = gen_Validation(Err.Number, Err.Description)
+    If chk = 1 Then Resume
+End Sub
+
+
+Private Sub save_Click()
+    Set paydb = New ADODB.Connection
+    Set payrs = New ADODB.Recordset
+    paydb.Open pay
+    sql = ("select * from emp_vda where v_year = " & Trim(year_cmb.Text) & " and v_month = " & month_cmb.ItemData(month_cmb.ListIndex) & " and v_company = '" & company_code & "'")
+    payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
+    If Not payrs.EOF Then
+       payrs.Fields("v_vdaamount") = vda_amount
+    Else
+       payrs.AddNew
+       payrs.Fields("v_company") = "1"
+       payrs.Fields("v_month") = month_cmb.ItemData(month_cmb.ListIndex)
+       payrs.Fields("v_year") = Trim(year_cmb.Text)
+       payrs.Fields("v_vdaamount") = vda_amount
+       payrs.Update
+       vda_amount = 0
+    End If
+End Sub
+
+Private Sub month_cmb_Click()
+    If Trim(month_cmb.Text) = "" Then
+       MsgBox ("Select month")
+       Exit Sub
+    End If
+    Set paydb = New ADODB.Connection
+    Set payrs = New ADODB.Recordset
+    paydb.Open pay
+    sql = ("select * from emp_vda where v_year = " & Trim(year_cmb.Text) & " and v_month = " & month_cmb.ItemData(month_cmb.ListIndex) & " and v_company = '" & company_code & "'")
+    payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
+    If Not payrs.EOF Then
+       vda_amount = payrs.Fields("v_vdaamount")
+    Else
+       vda_amount = 0
+    End If
+End Sub
+
+Private Sub year_cmb_click()
+    If Trim(year_cmb.Text) = "" Then
+       MsgBox ("Select year")
+       Exit Sub
+    End If
+    Set paydb = New ADODB.Connection
+    Set payrs = New ADODB.Recordset
+    paydb.Open pay
+    sql = ("select * from emp_vda where v_year = " & Trim(year_cmb.Text) & " and v_month = " & month_cmb.ItemData(month_cmb.ListIndex) & " and v_company = '" & company_code & "'")
+    payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
+    If Not payrs.EOF Then
+       vda_amount = payrs.Fields("v_vdaamount")
+    Else
+       vda_amount = 0
+    End If
+End Sub

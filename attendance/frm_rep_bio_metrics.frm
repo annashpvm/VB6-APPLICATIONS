@@ -115,7 +115,7 @@ Begin VB.Form frm_rep_bio_metrics
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130285569
+         Format          =   130547713
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -127,7 +127,7 @@ Begin VB.Form frm_rep_bio_metrics
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130285569
+         Format          =   130547713
          CurrentDate     =   39359
       End
       Begin VB.Label Label9 
@@ -1058,21 +1058,21 @@ Private Sub PROCESS_Click()
    gst_repconnect = "dsn=pay_new;uid=sa;pwd=serdat"
 ''   cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\payslip.rpt"
 ''   cry_rep1.Formulas(0) = ("report_month = " & cmb_month.Text)
-   cry_rep1.Formulas(0) = ("report_month = '" & cmb_month.Text & "'")
-   cry_rep1.Formulas(1) = ("report_year = '" & cmb_year.Text & "'")
-   cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
+   Cry_rep1.Formulas(0) = ("report_month = '" & cmb_month.Text & "'")
+   Cry_rep1.Formulas(1) = ("report_year = '" & cmb_year.Text & "'")
+   Cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
    If opt_staff.Value = True Then
-      cry_rep1.Formulas(3) = ("sw= 'STAFF'")
+      Cry_rep1.Formulas(3) = ("sw= 'STAFF'")
    ElseIf opt_worker.Value = True Then
-      cry_rep1.Formulas(3) = ("sw= 'WORKER'")
+      Cry_rep1.Formulas(3) = ("sw= 'WORKER'")
    Else
-      cry_rep1.Formulas(3) = ("sw= ''")
+      Cry_rep1.Formulas(3) = ("sw= ''")
    End If
-   cry_rep1.Formulas(4) = ""
-   cry_rep1.Formulas(5) = ""
+   Cry_rep1.Formulas(4) = ""
+   Cry_rep1.Formulas(5) = ""
 
    
-   cry_rep1.PrinterSelect
+   Cry_rep1.PrinterSelect
    Dim ds, emp, dept As String
 ''   If optchk = 1 Then
 ''      ds = " and {emp_mas.emp_workplace} = 'MILL' and {emp_mas.emp_classification} = 'B'"
@@ -1206,46 +1206,48 @@ Private Sub PROCESS_Click()
    
    If cmb_rep.Text = "Monthly Attendence Report-EmpNo.wise" Then
       If opt_casual.Value = True Then
-         cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_cs.rpt"
+         Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_cs.rpt"
       Else
          If opt_vou.Value = True Then
-            cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou.rpt"
+            Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou.rpt"
          Else
-            cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status.rpt"
+            Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status.rpt"
          End If
       End If
    ElseIf cmb_rep.Text = "Monthly Attendence Abstract" Then
-           cry_rep1.Formulas(4) = ("month_end_date = " & Day(end_date.Value) & "")
+           Cry_rep1.Formulas(4) = ("month_end_date = " & Day(end_date.Value) & "")
            If opt_staff.Value = True Then
-              cry_rep1.Formulas(5) = ("formtype= 'FORM 25'")
+              Cry_rep1.Formulas(5) = ("formtype= 'FORM 25'")
            ElseIf opt_worker.Value = True Then
-               cry_rep1.Formulas(5) = ("formtype= 'FORM 25B'")
+               Cry_rep1.Formulas(5) = ("formtype= 'FORM 25B'")
            End If
 
       If opt_vou.Value = True Then
-         cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_abstract_vou.rpt"
+         Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_abstract_vou.rpt"
       Else
-         cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_abstract.rpt"
+         Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_abstract.rpt"
       End If
    ElseIf cmb_rep.Text = "Muster Roll" Then
-           cry_rep1.Formulas(0) = "sdate = '" & Format(st_date.Value, "dd/mm/yyyy") & "'"
-           cry_rep1.Formulas(1) = "edate = '" & Format(end_date.Value, "dd/mm/yyyy") & "'"
+           ds = " and {emp_mas.emp_code} > 110  and {emp_mas.emp_code} < 20000   and ({bio_attendlogs.a_present}+{bio_attendlogs.a_layoff}+{bio_attendlogs.a_ml}+{bio_attendlogs.a_ch}+{bio_attendlogs.a_hpe}) > 0 and {emp_salary.s_pf} > 0"
+
+           Cry_rep1.Formulas(0) = "sdate = '" & Format(st_date.Value, "dd/mm/yyyy") & "'"
+           Cry_rep1.Formulas(1) = "edate = '" & Format(end_date.Value, "dd/mm/yyyy") & "'"
            
-           cry_rep1.Formulas(2) = ("report_month = '" & cmb_month.Text & "'")
-           cry_rep1.Formulas(3) = ("report_year = '" & cmb_year.Text & "'")
+           Cry_rep1.Formulas(2) = ("report_month = '" & cmb_month.Text & "'")
+           Cry_rep1.Formulas(3) = ("report_year = '" & cmb_year.Text & "'")
    
-           cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\muster_roll.rpt"
+           Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\muster_roll.rpt"
       
    ElseIf cmb_rep.Text = "Monthly Attendence Report-Dept.wise" Then
         If opt_casual.Value = True Then
-           cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_cs.rpt"
+           Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_cs.rpt"
         Else
            If opt_staff.Value = True Then
-              cry_rep1.Formulas(5) = ("formtype= 'FORM 25'")
+              Cry_rep1.Formulas(5) = ("formtype= 'FORM 25'")
            ElseIf opt_worker.Value = True Then
-               cry_rep1.Formulas(5) = ("formtype= 'FORM 25B'")
+               Cry_rep1.Formulas(5) = ("formtype= 'FORM 25B'")
            Else
-               cry_rep1.Formulas(5) = ("formtype= ''")
+               Cry_rep1.Formulas(5) = ("formtype= ''")
            End If
 
 ''            If opt_vou.Value = True Then
@@ -1255,18 +1257,18 @@ Private Sub PROCESS_Click()
 ''            Else
 ''               Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_all.rpt"
 ''            End If
-               cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise.rpt"
+               Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise.rpt"
         End If
    ElseIf cmb_rep.Text = "Monthly Attendence Report-Dept.wise-Full Attendance" Then
         If opt_casual.Value = True Then
-           cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_cs.rpt"
+           Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_cs.rpt"
         Else
            If opt_staff.Value = True Then
-              cry_rep1.Formulas(5) = ("formtype= 'FORM 25'")
+              Cry_rep1.Formulas(5) = ("formtype= 'FORM 25'")
            ElseIf opt_worker.Value = True Then
-               cry_rep1.Formulas(5) = ("formtype= 'FORM 25B'")
+               Cry_rep1.Formulas(5) = ("formtype= 'FORM 25B'")
            Else
-               cry_rep1.Formulas(5) = ("formtype= ''")
+               Cry_rep1.Formulas(5) = ("formtype= ''")
            End If
 
 ''            If opt_vou.Value = True Then
@@ -1276,39 +1278,39 @@ Private Sub PROCESS_Click()
 ''            Else
 ''               Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_all.rpt"
 ''            End If
-               cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_full.rpt"
+               Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_full.rpt"
         End If
    ElseIf cmb_rep.Text = "Employee - Monthwise Attendance" Then
-               cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\attendance_empwise_abstract.rpt"
+               Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\attendance_empwise_abstract.rpt"
    ElseIf cmb_rep.Text = "Monthly IN/OUT Report" Then
-           cry_rep1.Formulas(0) = "sdate = '" & Format(st_date.Value, "dd/mm/yyyy") & "'"
-           cry_rep1.Formulas(1) = "edate = '" & Format(end_date.Value, "dd/mm/yyyy") & "'"
-           cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
-           cry_rep1.Formulas(3) = ("repname= 'DAILY ATTENDANCE SHEET FROM'")
+           Cry_rep1.Formulas(0) = "sdate = '" & Format(st_date.Value, "dd/mm/yyyy") & "'"
+           Cry_rep1.Formulas(1) = "edate = '" & Format(end_date.Value, "dd/mm/yyyy") & "'"
+           Cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
+           Cry_rep1.Formulas(3) = ("repname= 'DAILY ATTENDANCE SHEET FROM'")
          
 
-        cry_rep1.Formulas(4) = ""
-        cry_rep1.Formulas(5) = ""
+        Cry_rep1.Formulas(4) = ""
+        Cry_rep1.Formulas(5) = ""
        
-       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\attendance_Daywise.rpt"
+       Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\attendance_Daywise.rpt"
    ElseIf cmb_rep.Text = "MANUAL ATTENDANCE SHEET" Then
        
-        cry_rep1.Formulas(0) = ""
-        cry_rep1.Formulas(1) = ""
-        cry_rep1.Formulas(2) = ""
+        Cry_rep1.Formulas(0) = ""
+        Cry_rep1.Formulas(1) = ""
+        Cry_rep1.Formulas(2) = ""
         If opt_staff.Value = True Then
-           cry_rep1.Formulas(3) = ("sw= 'STAFF'")
+           Cry_rep1.Formulas(3) = ("sw= 'STAFF'")
         ElseIf opt_worker.Value = True Then
-           cry_rep1.Formulas(3) = ("sw= 'WORKER'")
+           Cry_rep1.Formulas(3) = ("sw= 'WORKER'")
         ElseIf opt_vou.Value = True Then
-           cry_rep1.Formulas(3) = ("sw= 'RETAINER'")
+           Cry_rep1.Formulas(3) = ("sw= 'RETAINER'")
         Else
-           cry_rep1.Formulas(3) = ("sw= 'CASUAL'")
+           Cry_rep1.Formulas(3) = ("sw= 'CASUAL'")
         End If
-        cry_rep1.Formulas(4) = ""
-        cry_rep1.Formulas(5) = ""
+        Cry_rep1.Formulas(4) = ""
+        Cry_rep1.Formulas(5) = ""
         
-         cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_format.rpt"
+         Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_format.rpt"
         
 ''        If opt_staff.Value = True Or opt_worker.Value = True Then
 ''           Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_format.rpt"
@@ -1320,13 +1322,13 @@ Private Sub PROCESS_Click()
         
    
    ElseIf cmb_rep.Text = "Monthly IN/OUT Report-DEPARTMENTWISE" Then
-       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_inout_status_deptwise.rpt"
+       Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_inout_status_deptwise.rpt"
        
    ElseIf cmb_rep.Text = "Morethan 10 days Leave+Absent Report" Then
            If opt_vou.Value = True Then
-               cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou_absent.rpt"
+               Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou_absent.rpt"
            Else
-               cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_absent.rpt"
+               Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_absent.rpt"
            End If
    ElseIf cmb_rep.Text = "Worker Cost Report" Then
         pst_qry = "if exists (select * from sysobjects where id = object_id(N'[dbo].[vew_emp_daily_cost_worker]') and OBJECTPROPERTY(id, N'IsView') = 1)" _
@@ -1359,18 +1361,18 @@ Private Sub PROCESS_Click()
 
         paydb.Execute (pst_qry)
            
-       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\rpt_worker_cost.rpt"
-       cry_rep1.ReplaceSelectionFormula ("")
+       Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\rpt_worker_cost.rpt"
+       Cry_rep1.ReplaceSelectionFormula ("")
        
-        cry_rep1.Formulas(2) = ""
-        cry_rep1.Formulas(3) = ""
-        cry_rep1.Formulas(4) = ""
-        cry_rep1.Formulas(5) = ""
-        cry_rep1.Formulas(0) = "sdate = '" & Format(st_date.Value, "dd/mm/yyyy") & "'"
-        cry_rep1.Formulas(1) = "edate = '" & Format(end_date.Value, "dd/mm/yyyy") & "'"
-   cry_rep1.WindowState = crptMaximized
-   cry_rep1.Connect = gst_repconnect
-   cry_rep1.Action = 1
+        Cry_rep1.Formulas(2) = ""
+        Cry_rep1.Formulas(3) = ""
+        Cry_rep1.Formulas(4) = ""
+        Cry_rep1.Formulas(5) = ""
+        Cry_rep1.Formulas(0) = "sdate = '" & Format(st_date.Value, "dd/mm/yyyy") & "'"
+        Cry_rep1.Formulas(1) = "edate = '" & Format(end_date.Value, "dd/mm/yyyy") & "'"
+   Cry_rep1.WindowState = crptMaximized
+   Cry_rep1.Connect = gst_repconnect
+   Cry_rep1.Action = 1
    Exit Sub
    
    Else
@@ -1470,29 +1472,29 @@ Private Sub PROCESS_Click()
  '''       End If
         
    If opt_pfyes.Value = True Then
-      cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
+      Cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
                                          " and {emp_mas.emp_company} = " & mcode & "   " & ds & " and {emp_mas.EMP_PFELIGIBLE} = 'Y' ")
    
    ElseIf opt_pfno.Value = True Then
-      cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
+      Cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
                                          " and {emp_mas.emp_company} = " & mcode & "   " & ds & "and {emp_mas.EMP_PFELIGIBLE} = 'N' ")
 
    Else
      If cmb_rep.Text = "Monthly IN/OUT Report" Then
-         cry_rep1.ReplaceSelectionFormula ("{bio_device_shiftlogs.ds_date} >=  date(" & Format$(st_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_date} <=  date(" & Format$(end_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_sft_hrs} > 0 ")
+         Cry_rep1.ReplaceSelectionFormula ("{bio_device_shiftlogs.ds_date} >=  date(" & Format$(st_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_date} <=  date(" & Format$(end_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_sft_hrs} > 0 ")
      ElseIf cmb_rep.Text = "Employee - Monthwise Attendance" Then
-         cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {emp_mas.emp_company} = " & mcode & "   " & ds & " ")
+         Cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {emp_mas.emp_company} = " & mcode & "   " & ds & " ")
      Else
-         cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
+         Cry_rep1.ReplaceSelectionFormula ("{bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
                                          " and {emp_mas.emp_company} = " & mcode & "   " & ds & " ")
      End If
    End If
    
 
 
-   cry_rep1.WindowState = crptMaximized
-   cry_rep1.Connect = gst_repconnect
-   cry_rep1.Action = 1
+   Cry_rep1.WindowState = crptMaximized
+   Cry_rep1.Connect = gst_repconnect
+   Cry_rep1.Action = 1
 End Sub
 Public Sub get_emplist()
      Dim payrs As New ADODB.Recordset

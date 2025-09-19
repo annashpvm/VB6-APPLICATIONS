@@ -289,7 +289,7 @@ Begin VB.Form frm_rep_employee_details
       _ExtentX        =   2355
       _ExtentY        =   450
       _Version        =   393216
-      Format          =   130809857
+      Format          =   125435905
       CurrentDate     =   42187
    End
    Begin VB.Frame Frame1 
@@ -309,6 +309,22 @@ Begin VB.Form frm_rep_employee_details
       TabIndex        =   0
       Top             =   1200
       Width           =   9240
+      Begin VB.TextBox txtyear 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   4200
+         TabIndex        =   43
+         Top             =   5640
+         Width           =   1575
+      End
       Begin VB.Frame Frame4 
          Caption         =   "DETAILS"
          BeginProperty Font 
@@ -443,7 +459,7 @@ Begin VB.Form frm_rep_employee_details
          Height          =   975
          Left            =   3000
          TabIndex        =   4
-         Top             =   6240
+         Top             =   6360
          Width           =   1695
          Begin VB.CommandButton EXIT 
             Caption         =   "E&XIT"
@@ -508,6 +524,23 @@ Begin VB.Form frm_rep_employee_details
             Top             =   360
             Width           =   1215
          End
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Increment Year"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   1320
+         TabIndex        =   44
+         Top             =   5640
+         Width           =   2535
       End
    End
    Begin Crystal.CrystalReport cry_rep1 
@@ -770,6 +803,19 @@ Private Sub PROCESS_Click()
         ElseIf opt_salary_details.Value = True Then
                cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\empdetails_deptwise.rpt"
         Else
+        
+            pst_qry = "if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[vew_increment]') and OBJECTPROPERTY(id, N'IsView') = 1)" _
+                   & " drop view [dbo].[vew_increment]"
+        paydb.Execute pst_qry
+        pst_qry = "create view vew_increment as " _
+                  & " select empi_idcode,sum(increment) increment from ( " _
+                  & " select emp_fpcode empi_idcode,0 as increment  from emp_mas where emp_company = 1 and emp_status = 'A' " _
+                  & " Union All " _
+                  & " select empi_idcode, sum(empi_increment) as increment from emp_increment where empi_year = " & Val(txtyear.Text) & "group by empi_idcode ) a1 group by empi_idcode"
+                  
+
+        paydb.Execute pst_qry
+        
                cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\empdetails_deptwise_CTC.rpt"
         End If
    
@@ -803,6 +849,11 @@ Private Sub PROCESS_Click()
 
    End If
    
+   
+   If opt_salary_details_ctc.Value = True Then
+       cry_rep1.Formulas(4) = ("INCYEAR= '" & txtyear.Text & "'")
+   End If
+
    cry_rep1.DiscardSavedData = True
    cry_rep1.ReplaceSelectionFormula (qry1 & dept)
    cry_rep1.WindowState = crptMaximized

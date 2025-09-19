@@ -1,6 +1,6 @@
-MAINMENU = 52, 52, 916, 478, Z, 26, 26, 890, 452, C
+MAINMENU = 52, 52, 916, 478, , 26, 26, 890, 452, C
 Attendance = 182, 182, 1037, 605, 
-frm_rep_bio_metrics = 52, 52, 913, 474, , 182, 182, 1046, 608, C
+frm_rep_bio_metrics = 52, 52, 913, 474, Z, 182, 182, 1046, 608, C
 frm_rep_bio_metrics_view = 0, 0, 0, 0, C, 0, 0, 864, 426, C
 frm_rep_bio_metrics_daily = 156, 156, 1100, 582, , 26, 26, 890, 452, C
 frm_bio_metric_upload_new = 78, 78, 939, 500, , 52, 52, 916, 478, C

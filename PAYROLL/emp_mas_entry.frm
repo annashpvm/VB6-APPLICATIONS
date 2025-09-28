@@ -1007,7 +1007,7 @@ Begin VB.Form emp_mas_entry
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin VB.Label Label89 
@@ -1508,7 +1508,7 @@ Begin VB.Form emp_mas_entry
             _ExtentX        =   2566
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin VB.Label Label50 
@@ -2090,7 +2090,7 @@ Begin VB.Form emp_mas_entry
             _ExtentX        =   2566
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin MSComCtl2.DTPicker dob 
@@ -2102,7 +2102,7 @@ Begin VB.Form emp_mas_entry
             _ExtentX        =   2487
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin VB.Label Label2 
@@ -4536,8 +4536,8 @@ End Sub
 Private Sub empedit_cmb_Click()
     fillgrid
     searchopt = 1
-    txt_newname.Text = ""
-    txt_father_name.Text = ""
+''    txt_newname.Text = ""
+  ''  txt_father_name.Text = ""
     dt_resigned.Value = Format(Now, "dd/mm/yyyy")
     savechk = 1
     Set paydb = New ADODB.Connection
@@ -4564,8 +4564,8 @@ Private Sub empedit_cmb_Click()
        emp_name = empedit_cmb.Text 'empedit_cmb.ItemData(empedit_cmb.ListIndex)
        
 
-       txt_newname.Text = empedit_cmb.Text
-       txt_father_name.Text = payrs.Fields("emp_fname")
+''       txt_newname.Text = empedit_cmb.Text
+  ''     txt_father_name.Text = payrs.Fields("emp_fname")
        
        fathername = payrs.Fields("emp_fname")
        If payrs.Fields("emp_sex") = "M" Then

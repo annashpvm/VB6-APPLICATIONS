@@ -289,7 +289,7 @@ Begin VB.Form frm_rep_employee_details
       _ExtentX        =   2355
       _ExtentY        =   450
       _Version        =   393216
-      Format          =   125435905
+      Format          =   121176065
       CurrentDate     =   42187
    End
    Begin VB.Frame Frame1 
@@ -304,11 +304,11 @@ Begin VB.Form frm_rep_employee_details
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00FF00FF&
-      Height          =   7755
+      Height          =   9195
       Left            =   1080
       TabIndex        =   0
-      Top             =   1200
-      Width           =   9240
+      Top             =   960
+      Width           =   9225
       Begin VB.TextBox txtyear 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -322,7 +322,7 @@ Begin VB.Form frm_rep_employee_details
          Height          =   375
          Left            =   4200
          TabIndex        =   43
-         Top             =   5640
+         Top             =   6840
          Width           =   1575
       End
       Begin VB.Frame Frame4 
@@ -337,11 +337,28 @@ Begin VB.Form frm_rep_employee_details
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00FF0000&
-         Height          =   2505
+         Height          =   3465
          Left            =   720
          TabIndex        =   32
          Top             =   3000
          Width           =   6600
+         Begin VB.OptionButton opt_work_position 
+            Caption         =   "WORK POSITION HISTORY"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   405
+            Left            =   600
+            TabIndex        =   45
+            Top             =   1320
+            Width           =   3975
+         End
          Begin VB.OptionButton opt_salary_details_ctc 
             Caption         =   "SALARY DETAILS  - CTC"
             BeginProperty Font 
@@ -356,7 +373,7 @@ Begin VB.Form frm_rep_employee_details
             Height          =   405
             Left            =   600
             TabIndex        =   42
-            Top             =   1800
+            Top             =   2760
             Width           =   3975
          End
          Begin VB.OptionButton opt_salary_details 
@@ -373,7 +390,7 @@ Begin VB.Form frm_rep_employee_details
             Height          =   405
             Left            =   600
             TabIndex        =   35
-            Top             =   1200
+            Top             =   2040
             Width           =   3975
          End
          Begin VB.OptionButton opt_all_details 
@@ -457,9 +474,9 @@ Begin VB.Form frm_rep_employee_details
       End
       Begin VB.Frame Frame3 
          Height          =   975
-         Left            =   3000
+         Left            =   3120
          TabIndex        =   4
-         Top             =   6360
+         Top             =   7560
          Width           =   1695
          Begin VB.CommandButton EXIT 
             Caption         =   "E&XIT"
@@ -539,7 +556,7 @@ Begin VB.Form frm_rep_employee_details
          Height          =   375
          Left            =   1320
          TabIndex        =   44
-         Top             =   5640
+         Top             =   6840
          Width           =   2535
       End
    End
@@ -600,7 +617,7 @@ Private Sub PROCESS_Click()
            qry1 = ""
    
    
-   
+   Dim deptname As String
    dept = ""
    If opt_selective_dept.Value = True Then
         Dim pin_row, i As Integer
@@ -609,6 +626,7 @@ Private Sub PROCESS_Click()
            For pin_row = 0 To lst_dept.ListCount - 1
                If lst_dept.Selected(pin_row) = True Then
                   If i = 0 Then
+                     deptname = lst_dept.List(pin_row)
                      dept = " and ( {pdept_mas.dept_name} = '" & lst_dept.List(pin_row) & "'"
                      i = i + 1
                   Else
@@ -687,7 +705,7 @@ Private Sub PROCESS_Click()
            If qry1 <> "" Then
               qry1 = qry1 + " and ({emp_mas.emp_status} = 'A' OR {emp_mas.emp_status} = 'B')"
            Else
-              qry1 = " ({emp_mas.emp_status} = 'A' OR {emp_mas.emp_status} = 'B')"
+              qry1 = " ({emp_mas.emp_status} = 'A')"
            End If
         ElseIf opt_emptype_resigned.Value = True Then
            If qry1 <> "" Then
@@ -802,7 +820,9 @@ Private Sub PROCESS_Click()
                cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\master_data_salary.rpt"
         ElseIf opt_salary_details.Value = True Then
                cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\empdetails_deptwise.rpt"
-        Else
+        ElseIf opt_work_position = True And opt_selective_dept.Value = True And deptname = "PRODUCTION" Then
+               cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\empdetails_deptwise_work_position_production.rpt"
+        ElseIf opt_salary_details_ctc.Value = True Then
         
             pst_qry = "if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[vew_increment]') and OBJECTPROPERTY(id, N'IsView') = 1)" _
                    & " drop view [dbo].[vew_increment]"

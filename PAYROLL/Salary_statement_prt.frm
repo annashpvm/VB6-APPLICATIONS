@@ -9,8 +9,8 @@ Begin VB.Form Salary_statement_prt
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   3195
+   ScaleWidth      =   4680
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame11 
       Height          =   5175
@@ -204,7 +204,7 @@ Begin VB.Form Salary_statement_prt
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   120651777
+         Format          =   125829121
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -216,7 +216,7 @@ Begin VB.Form Salary_statement_prt
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   120651777
+         Format          =   125829121
          CurrentDate     =   39359
       End
       Begin VB.Label Label10 
@@ -351,7 +351,7 @@ Begin VB.Form Salary_statement_prt
                _ExtentX        =   2778
                _ExtentY        =   661
                _Version        =   393216
-               Format          =   120651777
+               Format          =   125829121
                CurrentDate     =   39359
             End
          End
@@ -1167,7 +1167,7 @@ Private Sub PROCESS_Click()
    
       
       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\bank_salary_statement_abstract.rpt"
-       If opt_Bank.Value = True Then
+       If opt_bank.Value = True Then
            cry_rep1.Formulas(6) = ("salary_type = 'BANK'")
             cry_rep1.ReplaceSelectionFormula ("{emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_salary.s_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
                                      " and {emp_salary.s_salary_bank} = 1 and {emp_salary.s_company} = " & company_code & " and {emp_salary.s_salarydays} > 0  " & ds & "")

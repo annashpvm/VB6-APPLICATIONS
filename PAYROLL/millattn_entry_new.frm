@@ -10,8 +10,8 @@ Begin VB.Form millattn_entry_new
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   3090
+   ScaleWidth      =   4680
    WindowState     =   2  'Maximized
    Begin VB.CommandButton cmd_ho_attendance 
       Caption         =   "GET HO ATTENDANCE"
@@ -165,7 +165,7 @@ Begin VB.Form millattn_entry_new
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130678785
+         Format          =   130482177
          CurrentDate     =   44896
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -177,7 +177,7 @@ Begin VB.Form millattn_entry_new
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130678785
+         Format          =   130482177
          CurrentDate     =   44896
       End
       Begin VB.Label Label10 

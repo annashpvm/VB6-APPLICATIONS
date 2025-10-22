@@ -446,7 +446,7 @@ Begin VB.Form frm_leave_entries
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130940929
+         Format          =   129761281
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -458,7 +458,7 @@ Begin VB.Form frm_leave_entries
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130940929
+         Format          =   129761281
          CurrentDate     =   39359
       End
       Begin VB.Label Label9 
@@ -834,7 +834,7 @@ Begin VB.Form frm_leave_entries
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   130940929
+            Format          =   129761281
             CurrentDate     =   42278
          End
          Begin MSComCtl2.DTPicker dt_to 
@@ -855,7 +855,7 @@ Begin VB.Form frm_leave_entries
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   130940929
+            Format          =   129761281
             CurrentDate     =   42278
          End
          Begin VB.Label lbl2 
@@ -1070,7 +1070,7 @@ Begin VB.Form frm_leave_entries
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   130940929
+      Format          =   129761281
       CurrentDate     =   42278
    End
    Begin MSComCtl2.DTPicker dt_entdate 
@@ -1092,7 +1092,7 @@ Begin VB.Form frm_leave_entries
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   130940929
+      Format          =   129761281
       CurrentDate     =   42278
    End
    Begin VB.Label Label12 
@@ -1481,21 +1481,21 @@ Private Sub cmd_filter_Click()
     txt_years.Text = ""
     txt_months.Text = ""
     
-    cmb_leave.Clear
-     If txt_empcode.Text = "3515" Or txt_empcode.Text = "1006" Or txt_empcode.Text = "1252" Or txt_empcode.Text = "1810" Or txt_empcode.Text = "1127" Or txt_empcode.Text = "3202" Then
-        cmb_leave.AddItem "ML"
-        cmb_leave.AddItem "½ML"
-    Else
+''    cmb_leave.Clear
+''     If txt_empcode.Text = "3515" Or txt_empcode.Text = "1006" Or txt_empcode.Text = "1252" Or txt_empcode.Text = "1810" Or txt_empcode.Text = "1127" Or txt_empcode.Text = "3202" Or txt_empcode.Text = "1018" Then
+''        cmb_leave.AddItem "ML"
+''        cmb_leave.AddItem "½ML"
+''    Else
         cmb_leave.Text = "L"
         cmb_leave.AddItem "L"
+        cmb_leave.AddItem "½ML"
         cmb_leave.AddItem "ML"
         cmb_leave.AddItem "SA"
         cmb_leave.AddItem "EM.L"
         cmb_leave.AddItem "ESI L"
     ''    cmb_leave.AddItem "½EL½PL"
         cmb_leave.AddItem "½L"
-        cmb_leave.AddItem "½ML"
-    End If
+ ''   End If
     
     
     
@@ -1989,42 +1989,44 @@ Public Sub find_dates()
     st_date = end_date - Day(end_date) + 1
 End Sub
 
-Private Sub opt_staff_Click()
-    cmb_leave.Clear
-    cmb_leave.AddItem "L"
-    cmb_leave.AddItem "½L"
-    cmb_leave.AddItem "ML"
-      cmb_leave.AddItem "EM.L"
-cmb_leave.Text = "L"
-   lst_dept_Click
-End Sub
+''Private Sub opt_staff_Click()
+''    cmb_leave.Clear
+''    cmb_leave.AddItem "L"
+''    cmb_leave.AddItem "½L"
+''    cmb_leave.AddItem "ML"
+''            cmb_leave.AddItem "½ML"
+''      cmb_leave.AddItem "EM.L"
+''cmb_leave.Text = "L"
+''   lst_dept_Click
+''End Sub
 
 Private Sub opt_vou_Click()
     cmb_leave.Clear
     cmb_leave.AddItem "PL"
     cmb_leave.AddItem "½PL"
     cmb_leave.AddItem "ML"
+            cmb_leave.AddItem "½ML"
       cmb_leave.AddItem "EM.L"
 
 End Sub
 
-Private Sub opt_worker_Click()
-    cmb_leave.Clear
-    
-        cmb_leave.Clear
-    cmb_leave.AddItem "PL"
-    cmb_leave.AddItem "½PL"
-    cmb_leave.AddItem "ML"
-      cmb_leave.AddItem "EM.L"
-''    cmb_leave.AddItem "L"
+''Private Sub opt_worker_Click()
+''    cmb_leave.Clear
+''
+''        cmb_leave.Clear
 ''    cmb_leave.AddItem "PL"
-''    cmb_leave.AddItem "ML"
-''    ''cmb_leave.AddItem "½EL½PL"
 ''    cmb_leave.AddItem "½PL"
-''    cmb_leave.AddItem "EM.L"
-
-   lst_dept_Click
-End Sub
+''    cmb_leave.AddItem "ML"
+''      cmb_leave.AddItem "EM.L"
+''''    cmb_leave.AddItem "L"
+''''    cmb_leave.AddItem "PL"
+''''    cmb_leave.AddItem "ML"
+''''    ''cmb_leave.AddItem "½EL½PL"
+''''    cmb_leave.AddItem "½PL"
+''''    cmb_leave.AddItem "EM.L"
+''
+''   lst_dept_Click
+''End Sub
 
 Private Sub Refresh_Click()
     flx_data.Enabled = True

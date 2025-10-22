@@ -266,7 +266,7 @@ Begin VB.Form frm_prodn_incentive
          _ExtentX        =   2566
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   131596289
+         Format          =   130482177
          CurrentDate     =   44558
       End
       Begin VB.Label Label4 
@@ -848,7 +848,7 @@ If Not payrs.EOF Then
              bal_hrs = 0
              odmins = (Int(payrs("ds_od_hrs")) * 60) + (payrs("ds_od_hrs") - Int(payrs("ds_od_hrs"))) * 100
              permins = (Int(payrs("ds_per_hrs")) * 60) + (payrs("ds_per_hrs") - Int(payrs("ds_per_hrs"))) * 100
-''If payrs("emp_fpcode") = 1082 Then
+''If payrs("emp_fpcode") = 1049 Then
 ''   MsgBox ("Wait")
 ''End If
 

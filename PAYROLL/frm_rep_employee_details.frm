@@ -289,7 +289,7 @@ Begin VB.Form frm_rep_employee_details
       _ExtentX        =   2355
       _ExtentY        =   450
       _Version        =   393216
-      Format          =   121176065
+      Format          =   132448257
       CurrentDate     =   42187
    End
    Begin VB.Frame Frame1 

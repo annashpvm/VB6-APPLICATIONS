@@ -72,15 +72,12 @@ Begin VB.MDIForm MAINMENU
       Begin VB.Menu mnu_emp_modification 
          Caption         =   "EMPLOYEE WEEK OFF MODIFICATION"
       End
-      Begin VB.Menu mnu_emp_worked_posion 
-         Caption         =   "EMPLOYEE WORKED POISTION"
-      End
       Begin VB.Menu pf_nominee_mas 
          Caption         =   "PF NOMINEE MASTER "
          Visible         =   0   'False
       End
       Begin VB.Menu employee_position_master 
-         Caption         =   "EMPLOYEE POSITION MASTER"
+         Caption         =   "EMPLOYEE WORKED POSITION MASTER"
          Begin VB.Menu mnu_production 
             Caption         =   "Production"
          End
@@ -622,10 +619,6 @@ Private Sub mnu_emp_salary_slot_Click()
     emp_mas_slot_entry.ZOrder
 End Sub
 
-Private Sub mnu_emp_worked_posion_Click()
-     emp_worked_position.Show
-     emp_worked_position.ZOrder
-End Sub
 
 Private Sub mnu_employee_additional_Click()
     emptype_chk = 0
@@ -738,8 +731,8 @@ present_days.Show
 End Sub
 
 Private Sub mnu_production_Click()
-    emp_worked_position_mechanical.Show
-    emp_worked_position_mechanical.ZOrder
+    emp_worked_position_Production.Show
+    emp_worked_position_Production.ZOrder
 End Sub
 
 Private Sub mnu_Rep_overtime_Click()

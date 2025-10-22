@@ -8,8 +8,8 @@ Begin VB.Form emp_worked_position_Production
    ClientWidth     =   14550
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   9225
-   ScaleWidth      =   14550
+   ScaleHeight     =   10935
+   ScaleWidth      =   20160
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame1 
       Height          =   855
@@ -82,9 +82,9 @@ Begin VB.Form emp_worked_position_Production
       Height          =   8250
       Left            =   0
       TabIndex        =   6
-      Top             =   480
-      Width           =   16995
-      _ExtentX        =   29977
+      Top             =   600
+      Width           =   19515
+      _ExtentX        =   34422
       _ExtentY        =   14552
       _Version        =   393216
       Rows            =   3
@@ -126,6 +126,11 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub edit_Click()
+     fillgrid
+     filldata
+End Sub
+
 Private Sub exit_Click()
     Unload Me
 End Sub
@@ -147,31 +152,45 @@ Private Sub flx_position_KeyPress(KeyAscii As Integer)
             Exit Sub
         End If
         
-        
-        Select Case KeyAscii
-            Case 48 To 57 ' ASCII 0–9
+        If fin_selcol = 17 Then
+            Select Case KeyAscii
+                Case Is < 8
                 .TextMatrix(fin_selrow, fin_selcol) = .TextMatrix(fin_selrow, fin_selcol) & Chr(KeyAscii)
-
-            Case 8 ' Backspace
-                If Len(.TextMatrix(fin_selrow, fin_selcol)) > 0 Then
-                    .TextMatrix(fin_selrow, fin_selcol) = Left$(.TextMatrix(fin_selrow, fin_selcol), Len(.TextMatrix(fin_selrow, fin_selcol)) - 1)
-                End If
-
-            Case 13 ' Enter key
-                ' Move to next column
-                If fin_selcol < .Cols - 1 Then
-                    .Col = fin_selcol + 1
-                ElseIf fin_selrow < .Rows - 1 Then
-                    ' If at end of row, move to first column of next row
-                    .Row = fin_selrow + 1
-                    .Col = 0
-                End If
-                KeyAscii = 0 ' Suppress the default Enter key behavior
-
-            Case Else
-                MsgBox "Enter numbers only", vbExclamation
-                KeyAscii = 0 ' Cancel invalid input
-        End Select
+                Case Is > 8
+                .TextMatrix(fin_selrow, fin_selcol) = .TextMatrix(fin_selrow, fin_selcol) & Chr(KeyAscii)
+    
+                Case 8 ' Backspace
+                    If Len(.TextMatrix(fin_selrow, fin_selcol)) > 0 Then
+                        .TextMatrix(fin_selrow, fin_selcol) = Left$(.TextMatrix(fin_selrow, fin_selcol), Len(.TextMatrix(fin_selrow, fin_selcol)) - 1)
+                    End If
+            End Select
+            
+        Else
+            Select Case KeyAscii
+                Case 48 To 57 ' ASCII 0–9
+                    .TextMatrix(fin_selrow, fin_selcol) = .TextMatrix(fin_selrow, fin_selcol) & Chr(KeyAscii)
+    
+                Case 8 ' Backspace
+                    If Len(.TextMatrix(fin_selrow, fin_selcol)) > 0 Then
+                        .TextMatrix(fin_selrow, fin_selcol) = Left$(.TextMatrix(fin_selrow, fin_selcol), Len(.TextMatrix(fin_selrow, fin_selcol)) - 1)
+                    End If
+    
+                Case 13 ' Enter key
+                    ' Move to next column
+                    If fin_selcol < .Cols - 1 Then
+                        .Col = fin_selcol + 1
+                    ElseIf fin_selrow < .Rows - 1 Then
+                        ' If at end of row, move to first column of next row
+                        .Row = fin_selrow + 1
+                        .Col = 0
+                    End If
+                    KeyAscii = 0 ' Suppress the default Enter key behavior
+    
+                Case Else
+                    MsgBox "Enter numbers only", vbExclamation
+                    KeyAscii = 0 ' Cancel invalid input
+            End Select
+        End If
     End With
 
     Exit Sub
@@ -189,7 +208,7 @@ End Sub
 Function fillgrid()
     With flx_position
         .Clear
-        .Cols = 13
+        .Cols = 18
         .Rows = 1
         .TextMatrix(0, 0) = "Sl.No"
         .TextMatrix(0, 1) = "Emp code"
@@ -202,22 +221,32 @@ Function fillgrid()
         .TextMatrix(0, 8) = "Ist Asst"
         .TextMatrix(0, 9) = "Reliever"
         .TextMatrix(0, 10) = "Ist Operator"
-        .TextMatrix(0, 11) = "Shift Incharge"
+        .TextMatrix(0, 11) = "Sft Inch"
         .TextMatrix(0, 12) = "Reliever"
-         
+        .TextMatrix(0, 13) = "Supervisor"
+        .TextMatrix(0, 14) = "Fin.Superv"
+        .TextMatrix(0, 15) = "APM"
+        .TextMatrix(0, 16) = "PM"
+        .TextMatrix(0, 17) = "New Postion"
         .ColWidth(0) = 700
         .ColWidth(1) = 1000
         .ColWidth(2) = 3000
         .ColWidth(3) = 1200
-        .ColWidth(4) = 1000
-        .ColWidth(5) = 1000
-        .ColWidth(6) = 1000
-        .ColWidth(7) = 1000
-        .ColWidth(8) = 1000
-        .ColWidth(9) = 1000
-        .ColWidth(10) = 1000
-        .ColWidth(11) = 1000
-        .ColWidth(12) = 1000
+        .ColWidth(4) = 900
+        .ColWidth(5) = 900
+        .ColWidth(6) = 900
+        .ColWidth(7) = 900
+        .ColWidth(8) = 900
+        .ColWidth(9) = 900
+        .ColWidth(10) = 900
+        .ColWidth(11) = 900
+        .ColWidth(12) = 900
+        .ColWidth(13) = 1000
+        .ColWidth(14) = 1000
+        .ColWidth(15) = 900
+        .ColWidth(16) = 900
+        .ColWidth(17) = 1100
+        
         
         .ColAlignment(0) = 4
         .ColAlignment(1) = 4
@@ -233,7 +262,7 @@ End Function
 
 Function filldata()
   Set payrs = New ADODB.Recordset
-sql = "select emp_fpcode,emp_name,emp_doj,dept_name from emp_mas ,pdept_mas where emp_dept = dept_code and emp_company = 1 and emp_status = 'A' and emp_dept = 34"
+sql = "select * from emp_mas ,pdept_mas ,pdesi_mas where  emp_design =pdesi_code and emp_dept = dept_code and emp_company = 1 and emp_status = 'A' and emp_dept = 34 order by pdesi_order"
 paydb.CommandTimeout = 300
 payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
 i = 1
@@ -258,7 +287,7 @@ lbldept.Caption = payrs("dept_name")
     payrs.Close
 End If
 
-sql = "select * from emp_workposition_history where p_compcode = 1 and p_deptcode = 34"
+sql = "select * from emp_workposition_history_Production where p_compcode = 1 and p_deptcode = 34"
 payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
     If Not payrs.EOF Then
        While Not payrs.EOF
@@ -267,13 +296,18 @@ payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
                       If Val(flx_position.TextMatrix(i, 1)) = payrs.Fields("p_empcode") Then
                          flx_position.TextMatrix(i, 4) = payrs.Fields("p_press")
                          flx_position.TextMatrix(i, 5) = payrs.Fields("p_wire")
-                         flx_position.TextMatrix(i, 6) = payrs.Fields("p_dryer")
-                         flx_position.TextMatrix(i, 7) = payrs.Fields("p_ist_asst")
-                         flx_position.TextMatrix(i, 8) = payrs.Fields("p_ist_oper")
-                         flx_position.TextMatrix(i, 9) = payrs.Fields("p_shiftincharge")
-                         flx_position.TextMatrix(i, 10) = 0
-                         flx_position.TextMatrix(i, 11) = 0
-                         
+                         flx_position.TextMatrix(i, 6) = payrs.Fields("p_press_reliever")
+                         flx_position.TextMatrix(i, 7) = payrs.Fields("p_dryer")
+                         flx_position.TextMatrix(i, 8) = payrs.Fields("p_ist_asst")
+                         flx_position.TextMatrix(i, 9) = payrs.Fields("p_dryer_reliever")
+                         flx_position.TextMatrix(i, 10) = payrs.Fields("p_ist_oper")
+                         flx_position.TextMatrix(i, 11) = payrs.Fields("p_shiftincharge")
+                         flx_position.TextMatrix(i, 12) = payrs.Fields("p_sftinc_reliever")
+                         flx_position.TextMatrix(i, 13) = payrs.Fields("p_supervisor")
+                         flx_position.TextMatrix(i, 14) = payrs.Fields("p_fin_super")
+                         flx_position.TextMatrix(i, 15) = payrs.Fields("p_apm")
+                         flx_position.TextMatrix(i, 16) = payrs.Fields("p_pm")
+                         flx_position.TextMatrix(i, 17) = payrs.Fields("p_newposition")
                          
                       End If
                       
@@ -287,33 +321,59 @@ End Function
 
 
 
-Private Sub Refresh_Click()
+Private Sub NEW_Click()
      fillgrid
      filldata
 End Sub
 
-Private Sub save_Click()
+Private Sub refresh_Click()
+     fillgrid
+     filldata
+End Sub
+
+Private Sub SAVE_Click()
+
+      If flx_position.Rows < 3 Then
+         MsgBox ("No Records to Save...")
+         Exit Sub
+      End If
+       
+
 
 Me.MousePointer = 11
 Set payrs = New ADODB.Recordset
 millcode = 1
-  sql = "delete from emp_workposition_history where p_compcode = " & millcode & " and p_deptcode = 34"
+  sql = "delete from emp_workposition_history_Production where p_compcode = " & millcode & " and p_deptcode = 34"
   paydb.Execute sql
-  sql = "select * from emp_workposition_history where 1=2"
+  sql = "select * from emp_workposition_history_Production where 1=2"
   payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
   For i = 1 To flx_position.Rows - 1
             payrs.AddNew
+
+
             payrs.Fields("p_compcode") = millcode
             payrs.Fields("p_deptcode") = 34
             payrs.Fields("p_empcode") = flx_position.TextMatrix(i, 1)
+            
             payrs.Fields("p_press") = Val(flx_position.TextMatrix(i, 4))
             payrs.Fields("p_wire") = Val(flx_position.TextMatrix(i, 5))
-            payrs.Fields("p_dryer") = Val(flx_position.TextMatrix(i, 6))
-            payrs.Fields("p_ist_asst") = Val(flx_position.TextMatrix(i, 7))
-            payrs.Fields("p_ist_oper") = Val(flx_position.TextMatrix(i, 8))
-            payrs.Fields("p_shiftincharge") = Val(flx_position.TextMatrix(i, 9))
+            payrs.Fields("p_press_reliever") = Val(flx_position.TextMatrix(i, 6))
             
+            payrs.Fields("p_dryer") = Val(flx_position.TextMatrix(i, 7))
+            payrs.Fields("p_ist_asst") = Val(flx_position.TextMatrix(i, 8))
+            payrs.Fields("p_dryer_reliever") = Val(flx_position.TextMatrix(i, 9))
             
+            payrs.Fields("p_ist_oper") = Val(flx_position.TextMatrix(i, 10))
+            payrs.Fields("p_shiftincharge") = Val(flx_position.TextMatrix(i, 11))
+            payrs.Fields("p_sftinc_reliever") = Val(flx_position.TextMatrix(i, 12))
+            
+            payrs.Fields("p_supervisor") = Val(flx_position.TextMatrix(i, 13))
+            payrs.Fields("p_fin_super") = Val(flx_position.TextMatrix(i, 14))
+            
+            payrs.Fields("p_apm") = Val(flx_position.TextMatrix(i, 15))
+            payrs.Fields("p_pm") = Val(flx_position.TextMatrix(i, 16))
+ ''           payrs.Fields("p_date") = flx_position.TextMatrix(i, 17)
+            payrs.Fields("p_newposition") = flx_position.TextMatrix(i, 17)
             payrs.Update
   Next
   MsgBox ("Records are saved")

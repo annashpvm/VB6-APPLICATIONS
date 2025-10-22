@@ -9,15 +9,15 @@ Begin VB.Form Bonus_statement
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   3195
+   ScaleWidth      =   4680
    Visible         =   0   'False
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame3 
       Height          =   855
-      Left            =   4440
+      Left            =   4680
       TabIndex        =   8
-      Top             =   6480
+      Top             =   7920
       Width           =   1695
       Begin VB.CommandButton PRINT 
          BackColor       =   &H00C0C0FF&
@@ -54,11 +54,11 @@ Begin VB.Form Bonus_statement
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00C00000&
-      Height          =   6075
+      Height          =   7395
       Left            =   660
       TabIndex        =   0
       Top             =   360
-      Width           =   10575
+      Width           =   11175
       Begin VB.Frame Frame8 
          Caption         =   "ACTIVE / RESIGNED"
          BeginProperty Font 
@@ -74,7 +74,7 @@ Begin VB.Form Bonus_statement
          Height          =   855
          Left            =   600
          TabIndex        =   13
-         Top             =   4200
+         Top             =   4920
          Visible         =   0   'False
          Width           =   9015
          Begin VB.OptionButton opt_emptypeall 
@@ -104,11 +104,48 @@ Begin VB.Form Bonus_statement
          End
       End
       Begin VB.Frame Frame4 
-         Height          =   3735
+         Height          =   4455
          Left            =   480
          TabIndex        =   11
          Top             =   240
-         Width           =   9615
+         Width           =   9855
+         Begin VB.OptionButton opt5 
+            Caption         =   "Bonus Statement  - All (Excluding Basic && DA)"
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00C00000&
+            Height          =   420
+            Left            =   600
+            TabIndex        =   32
+            Top             =   1800
+            Value           =   -1  'True
+            Width           =   5415
+         End
+         Begin VB.OptionButton opt4 
+            Caption         =   "Bonus Statement  - All (Basic && DA)"
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00C00000&
+            Height          =   420
+            Left            =   600
+            TabIndex        =   31
+            Top             =   1440
+            Width           =   4095
+         End
          Begin VB.Frame Frame6 
             Height          =   1215
             Left            =   6000
@@ -191,9 +228,9 @@ Begin VB.Form Bonus_statement
          End
          Begin VB.Frame Frame5 
             Height          =   2055
-            Left            =   840
+            Left            =   960
             TabIndex        =   17
-            Top             =   1560
+            Top             =   2280
             Width           =   8055
             Begin VB.ComboBox cmb_month_to 
                BeginProperty Font 
@@ -348,15 +385,14 @@ Begin VB.Form Bonus_statement
             Left            =   600
             TabIndex        =   12
             Top             =   240
-            Value           =   -1  'True
             Width           =   3255
          End
       End
       Begin VB.TextBox txt_bonus 
          Height          =   495
-         Left            =   5520
+         Left            =   5640
          TabIndex        =   7
-         Top             =   5280
+         Top             =   6480
          Width           =   1335
       End
       Begin VB.Frame Frame2 
@@ -459,7 +495,7 @@ Begin VB.Form Bonus_statement
          Height          =   495
          Left            =   3120
          TabIndex        =   6
-         Top             =   5280
+         Top             =   6360
          Width           =   2415
       End
    End
@@ -576,6 +612,7 @@ Private Sub Form_Load()
 ''''        .AddItem "2011-2012"
 ''        .AddItem "2012-2013"
 ''        .AddItem "2013-2014"
+
 ''    End With
 ''''    cmb_year.Text = "2007-2008"
 End Sub
@@ -592,7 +629,13 @@ Private Sub print_Click()
    cry_rep1.PrinterSelect
 
    If opt_detail.Value = True Then
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\bonus_statement.rpt"
+      If opt4.Value = True Then
+         cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\bonus_statement_BASIC_DA.rpt"
+      ElseIf opt5.Value = True Then
+         cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\bonus_statement_BASIC_DA_Excluding.rpt"
+      Else
+         cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\bonus_statement.rpt"
+      End If
    Else
       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\bonus_statement_bank.rpt"
    End If
@@ -630,7 +673,7 @@ Private Sub print_Click()
    pst_qry = "{emp_salary.s_finyear} =  " & finyear & " and {emp_salary.s_company} = " & company_code
 
    
-   If opt1.Value = True Then
+   If opt1.Value = True Or opt4.Value = True Or opt5.Value = True Then
       pst_qry = "{emp_salary.s_company}= " & company_code & " and (({emp_salary.s_year} = " & Val(cmb_year_from.Text) & "  and {emp_salary.s_month} >= " & cmb_month_from.ItemData(cmb_month_from.ListIndex) & " ) or ({emp_salary.s_year} =  " & Val(cmb_year_to.Text) & " and {emp_salary.s_month} <= " & cmb_month_to.ItemData(cmb_month_to.ListIndex) & ") )"
    Else
       If opt2.Value = True Then

@@ -388,7 +388,7 @@ Begin VB.Form frm_bio_process
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   126418945
+         Format          =   129695745
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -400,7 +400,7 @@ Begin VB.Form frm_bio_process
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   126418945
+         Format          =   129695745
          CurrentDate     =   39359
       End
       Begin VB.Label Label10 
@@ -2021,29 +2021,29 @@ On Error GoTo err_handler
    gst_repconnect = "dsn=pay_new;uid=sa;pwd=serdat"
 ''   cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\payslip.rpt"
 ''   cry_rep1.Formulas(0) = ("report_month = " & cmb_month.Text)
-   cry_rep1.Formulas(0) = ("report_month = '" & cmb_month.Text & "'")
-   cry_rep1.Formulas(1) = ("report_year = '" & cmb_year.Text & "'")
-   cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
-   cry_rep1.PrinterSelect
+   Cry_rep1.Formulas(0) = ("report_month = '" & cmb_month.Text & "'")
+   Cry_rep1.Formulas(1) = ("report_year = '" & cmb_year.Text & "'")
+   Cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
+   Cry_rep1.PrinterSelect
    
    
    If opt_vou.Value = True Then
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou.rpt"
-      cry_rep1.ReplaceSelectionFormula ("{emp_voupay_mast.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
+      Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou.rpt"
+      Cry_rep1.ReplaceSelectionFormula ("{emp_voupay_mast.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
    ElseIf opt_regular.Value = True Then
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise.rpt"
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_full.rpt"
-      cry_rep1.ReplaceSelectionFormula ("{emp_mas.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
+      Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise.rpt"
+      Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_full.rpt"
+      Cry_rep1.ReplaceSelectionFormula ("{emp_mas.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
     
    Else
-     cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\cs\monthly_attendance_status.rpt"
-      cry_rep1.ReplaceSelectionFormula ("{mas_caemp.ca_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
+     Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\cs\monthly_attendance_status.rpt"
+      Cry_rep1.ReplaceSelectionFormula ("{mas_caemp.ca_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
 
    End If
    
-   cry_rep1.WindowState = crptMaximized
-   cry_rep1.Connect = gst_repconnect
-   cry_rep1.Action = 1
+   Cry_rep1.WindowState = crptMaximized
+   Cry_rep1.Connect = gst_repconnect
+   Cry_rep1.Action = 1
     
     
    Exit Sub

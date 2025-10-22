@@ -8,8 +8,8 @@ Begin VB.Form emp_worked_position_mechanical
    ClientWidth     =   4560
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   3015
+   ScaleWidth      =   4560
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame1 
       Height          =   855
@@ -258,7 +258,7 @@ lbldept.Caption = payrs("dept_name")
     payrs.Close
 End If
 
-sql = "select * from emp_workposition_history where p_compcode = 1 and p_deptcode = 34"
+sql = "select * from emp_workposition_history_Production where p_compcode = 1 and p_deptcode = 34"
 payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
     If Not payrs.EOF Then
        While Not payrs.EOF
@@ -287,17 +287,17 @@ End Function
 
 
 
-Private Sub Refresh_Click()
+Private Sub refresh_Click()
      fillgrid
      filldata
 End Sub
 
-Private Sub save_Click()
+Private Sub SAVE_Click()
 
 Me.MousePointer = 11
 Set payrs = New ADODB.Recordset
 millcode = 1
-  sql = "delete from emp_workposition_history where p_compcode = " & millcode & " and p_deptcode = 34"
+  sql = "delete from emp_workposition_history where p_compcode = " & millcode & " and p_deptcode = 3400"
   paydb.Execute sql
   sql = "select * from emp_workposition_history where 1=2"
   payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic

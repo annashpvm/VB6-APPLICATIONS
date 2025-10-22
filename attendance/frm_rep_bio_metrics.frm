@@ -115,7 +115,7 @@ Begin VB.Form frm_rep_bio_metrics
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130547713
+         Format          =   129564673
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -127,7 +127,7 @@ Begin VB.Form frm_rep_bio_metrics
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130547713
+         Format          =   129564673
          CurrentDate     =   39359
       End
       Begin VB.Label Label9 
@@ -1228,7 +1228,11 @@ Private Sub PROCESS_Click()
          Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_abstract.rpt"
       End If
    ElseIf cmb_rep.Text = "Muster Roll" Then
-           ds = " and {emp_mas.emp_code} > 110  and {emp_mas.emp_code} < 20000   and ({bio_attendlogs.a_present}+{bio_attendlogs.a_layoff}+{bio_attendlogs.a_ml}+{bio_attendlogs.a_ch}+{bio_attendlogs.a_hpe}) > 0 and {emp_salary.s_pf} > 0"
+           If (opt_pfno.Value = True) Then
+              ds = " and {emp_mas.emp_code} > 110  and {emp_mas.emp_code} < 20000   and ({bio_attendlogs.a_present}+{bio_attendlogs.a_layoff}+{bio_attendlogs.a_ml}+{bio_attendlogs.a_ch}+{bio_attendlogs.a_hpe}) > 0 and {emp_salary.s_pf} = 0"
+           Else
+              ds = " and {emp_mas.emp_code} > 110  and {emp_mas.emp_code} < 20000   and ({bio_attendlogs.a_present}+{bio_attendlogs.a_layoff}+{bio_attendlogs.a_ml}+{bio_attendlogs.a_ch}+{bio_attendlogs.a_hpe}) > 0 and {emp_salary.s_pf} > 0"
+           End If
 
            Cry_rep1.Formulas(0) = "sdate = '" & Format(st_date.Value, "dd/mm/yyyy") & "'"
            Cry_rep1.Formulas(1) = "edate = '" & Format(end_date.Value, "dd/mm/yyyy") & "'"

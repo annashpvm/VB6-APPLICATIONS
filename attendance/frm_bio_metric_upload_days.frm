@@ -283,7 +283,7 @@ Begin VB.Form frm_bio_metric_upload_days
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130351105
+         Format          =   129695745
          CurrentDate     =   44565
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -295,7 +295,7 @@ Begin VB.Form frm_bio_metric_upload_days
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130351105
+         Format          =   129695745
          CurrentDate     =   44565
       End
       Begin VB.Label Label10 
@@ -345,7 +345,7 @@ Begin VB.Form frm_bio_metric_upload_days
       _ExtentX        =   2778
       _ExtentY        =   661
       _Version        =   393216
-      Format          =   130351105
+      Format          =   129695745
       CurrentDate     =   44565
    End
    Begin VB.Label lbl_emp 
@@ -1309,7 +1309,7 @@ paydb.Execute pst_qry
     paydb.Execute sql
     
 ''FOR 7.00 AM to 03.00 PM
-    sql = "update bio_device_shiftlogs set ds_shift_actual = '07.00AM-03.00PM'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 07 and DATEpart(hour,ds_shift_in) <= 07"
+    sql = "update bio_device_shiftlogs set ds_shift_actual = '08.00AM-04.00PM'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 07 and DATEpart(hour,ds_shift_in) <= 07"
     paydb.Execute sql
 ''FOR 8.00 AM to 05.00 PM
 ''    sql = "update bio_device_shiftlogs set ds_shift_actual = '08.00AM-04.00PM'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 08 and DATEpart(hour,ds_shift_in) <= 08"
@@ -1651,6 +1651,10 @@ paydb.Execute pst_qry
   paydb.Execute sql
  
  
+
+    sql = "update bio_device_shiftlogs set ds_status = '½HP'  WHERE  ds_shift  = 'H' and ds_status = '½P½A'   and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' "
+    paydb.Execute sql
+
  
  
 1000:

@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "msflxgrd.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
-Begin VB.Form frm_prodn_incentive 
+Begin VB.Form frm_overtime 
    Caption         =   "WORKERS OVER TIME ENTRY"
    ClientHeight    =   9900
    ClientLeft      =   120
@@ -9,8 +9,8 @@ Begin VB.Form frm_prodn_incentive
    ClientWidth     =   14460
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   9900
-   ScaleWidth      =   14460
+   ScaleHeight     =   10935
+   ScaleWidth      =   20160
    Visible         =   0   'False
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame5 
@@ -266,7 +266,7 @@ Begin VB.Form frm_prodn_incentive
          _ExtentX        =   2566
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   131596289
+         Format          =   130154497
          CurrentDate     =   44558
       End
       Begin VB.Label Label4 
@@ -328,7 +328,7 @@ Begin VB.Form frm_prodn_incentive
       Width           =   13215
    End
 End
-Attribute VB_Name = "frm_prodn_incentive"
+Attribute VB_Name = "frm_overtime"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -339,6 +339,9 @@ Dim datefrom, dateto As Date
 Dim emptype As String
 Dim getotday As Integer
 Dim mmon, myear As Integer
+
+Dim overtime_eligible As Integer
+
 Private Sub cmb_month_Change()
     dt_ot.Value = Now - Day(Now) + 1
 End Sub
@@ -412,14 +415,16 @@ monthcheck
     If opt_all.Value = True Then
        sql = "select *  from bio_worker_daily_pihrs where w_company = " & millcode & " and  w_date = '" & Format(dt_ot.Value, "MM/dd/yyyy") & "'"
     ElseIf opt_worker.Value = True Then
-       sql = "select *  from bio_worker_daily_pihrs where w_cat = 'W' and w_company = " & millcode & " and  w_date = '" & Format(dt_ot.Value, "MM/dd/yyyy") & "'"
+       sql = "select *  from bio_worker_daily_pihrs where w_cat = 'W' and w_company = " & millcode & " and  w_date = '" & Format(dt_ot.Value, "MM/dd/yyyy") & "' order by  w_emp_fpcode"
     ElseIf opt_cs.Value = True Then
-       sql = "select *  from bio_worker_daily_pihrs where w_cat = 'C' and w_company = " & millcode & " and  w_date = '" & Format(dt_ot.Value, "MM/dd/yyyy") & "'"
+       sql = "select *  from bio_worker_daily_pihrs where w_cat = 'C' and w_company = " & millcode & " and  w_date = '" & Format(dt_ot.Value, "MM/dd/yyyy") & "' order by  w_emp_fpcode"
     End If
     
     payrs.Open sql, paydb, adOpenDynamic, adLockOptimistic
     If Not payrs.EOF Then
        While Not payrs.EOF
+    
+        
              For i = 1 To att_flex.Rows - 1
                  If Trim(att_flex.TextMatrix(i, 3)) <> "" Then
                       If Val(att_flex.TextMatrix(i, 3)) = payrs.Fields("w_emp_fpcode") Then
@@ -432,6 +437,9 @@ monthcheck
                          End If
                          att_flex.TextMatrix(i, 22) = payrs.Fields("w_accepted_hrs")
                          att_flex.TextMatrix(i, 23) = payrs.Fields("w_holiday_ot_hrs")
+                         
+
+
                       End If
                  End If
              Next
@@ -453,6 +461,7 @@ Private Sub exit_Click()
 End Sub
 
 Private Sub Form_Load()
+    overtime_eligible = 1
     getotday = 0
     cmb_millname.AddItem "SHVPM"
     cmb_millname.Text = "SHVPM"
@@ -726,6 +735,13 @@ Private Sub NEW_Click()
 End Sub
 
 Function filldata()
+
+If dt_ot >= CDate("11/18/2025") Then
+  overtime_eligible = 1
+Else
+  overtime_eligible = 2
+End If
+
 Dim dayfind, dayfind_intime, dayfind_outtime As String
 Dim intime, outtime, difftime, in1, in2, out1, out2 As Integer
 
@@ -848,7 +864,7 @@ If Not payrs.EOF Then
              bal_hrs = 0
              odmins = (Int(payrs("ds_od_hrs")) * 60) + (payrs("ds_od_hrs") - Int(payrs("ds_od_hrs"))) * 100
              permins = (Int(payrs("ds_per_hrs")) * 60) + (payrs("ds_per_hrs") - Int(payrs("ds_per_hrs"))) * 100
-''If payrs("emp_fpcode") = 1082 Then
+''If payrs("emp_fpcode") = 1049 Then
 ''   MsgBox ("Wait")
 ''End If
 
@@ -859,7 +875,7 @@ If Not payrs.EOF Then
                 cmin2 = (Int(payrs("ds_sft_hrs2")) * 60) + (payrs("ds_sft_hrs2") - Int(payrs("ds_sft_hrs2"))) * 100
              End If
              If payrs("ds_sft_hrs3") > 0 Then
-                cmin3 = (Int(payrs("ds_sft_hrs3")) * 60) + (payrs("ds_sft_hrs1") - Int(payrs("ds_sft_hrs3"))) * 100
+                cmin3 = (Int(payrs("ds_sft_hrs3")) * 60) + (payrs("ds_sft_hrs3") - Int(payrs("ds_sft_hrs3"))) * 100
              End If
               
 ''             If cmin2 > 0 Then
@@ -1047,13 +1063,13 @@ For i = 1 To att_flex.Rows - 1
 ''      End If
 ''   End If
    
-   If Val(att_flex.TextMatrix(i, 18)) - Val(att_flex.TextMatrix(i, 19)) >= 2 Then
+   If Val(att_flex.TextMatrix(i, 18)) - Val(att_flex.TextMatrix(i, 19)) >= overtime_eligible Then
       att_flex.TextMatrix(i, 20) = Format(Round(Val(att_flex.TextMatrix(i, 18)) - Val(att_flex.TextMatrix(i, 19)), 0), "#0.00")
    Else
       att_flex.TextMatrix(i, 20) = 0
    End If
    
-   If Val(att_flex.TextMatrix(i, 18)) >= 2 Then
+   If Val(att_flex.TextMatrix(i, 18)) >= overtime_eligible Then
       att_flex.TextMatrix(i, 18) = Format(Round(Val(att_flex.TextMatrix(i, 18)), 0), "#0.00")
    Else
       att_flex.TextMatrix(i, 18) = 0
@@ -1063,12 +1079,12 @@ For i = 1 To att_flex.Rows - 1
    Else
       att_flex.TextMatrix(i, 19) = 0
    End If
-   If Val(att_flex.TextMatrix(i, 20)) > 1 Then
+   If Val(att_flex.TextMatrix(i, 20)) >= overtime_eligible Then
       att_flex.TextMatrix(i, 20) = Format(Round(Val(att_flex.TextMatrix(i, 20)), 0), "#0.00")
    Else
       att_flex.TextMatrix(i, 20) = 0
    End If
-   If Val(att_flex.TextMatrix(i, 22)) >= 2 Then
+   If Val(att_flex.TextMatrix(i, 22)) >= overtime_eligible Then
 
       att_flex.TextMatrix(i, 22) = Format(Round(Val(att_flex.TextMatrix(i, 22)), 0), "#0.00")
    Else

@@ -357,6 +357,7 @@ Begin VB.Form emp_mas_entry
       _ExtentY        =   10292
       _Version        =   393216
       Tabs            =   8
+      Tab             =   1
       TabsPerRow      =   8
       TabHeight       =   794
       BackColor       =   12640511
@@ -372,71 +373,78 @@ Begin VB.Form emp_mas_entry
       EndProperty
       TabCaption(0)   =   "PERSONAL DETAILS"
       TabPicture(0)   =   "emp_mas_entry.frx":16E2
-      Tab(0).ControlEnabled=   -1  'True
-      Tab(0).Control(0)=   "Label5"
-      Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "Frame2"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "SEXFRAME"
-      Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "SSTab2"
-      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).ControlEnabled=   0   'False
+      Tab(0).Control(0)=   "cmdr"
+      Tab(0).Control(1)=   "Frame7"
+      Tab(0).Control(2)=   "Frame5"
+      Tab(0).Control(3)=   "Frame4"
       Tab(0).Control(4)=   "cmb_blood"
-      Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "Frame4"
-      Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "Frame5"
-      Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "Frame7"
-      Tab(0).Control(7).Enabled=   0   'False
-      Tab(0).Control(8)=   "cmdr"
-      Tab(0).Control(8).Enabled=   0   'False
+      Tab(0).Control(5)=   "SSTab2"
+      Tab(0).Control(6)=   "SEXFRAME"
+      Tab(0).Control(7)=   "Frame2"
+      Tab(0).Control(8)=   "Label5"
       Tab(0).ControlCount=   9
       TabCaption(1)   =   "PF and DEPT. DETAILS"
       TabPicture(1)   =   "emp_mas_entry.frx":16FE
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "Label9"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label10"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Label11"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "DESI"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Label8"
+      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "Label44"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "week_off"
+      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "Label94"
+      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "dept_cmb"
+      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).Control(9)=   "work_cmb"
+      Tab(1).Control(9).Enabled=   0   'False
       Tab(1).Control(10)=   "emptype_cmb"
+      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).Control(11)=   "Frame3"
+      Tab(1).Control(11).Enabled=   0   'False
       Tab(1).Control(12)=   "desi_cmb"
+      Tab(1).Control(12).Enabled=   0   'False
       Tab(1).Control(13)=   "qualify_cmb"
+      Tab(1).Control(13).Enabled=   0   'False
       Tab(1).Control(14)=   "weekly_off_lst"
+      Tab(1).Control(14).Enabled=   0   'False
       Tab(1).Control(15)=   "txt_Year_Passed"
+      Tab(1).Control(15).Enabled=   0   'False
       Tab(1).ControlCount=   16
       TabCaption(2)   =   "EARNINGS"
       TabPicture(2)   =   "emp_mas_entry.frx":171A
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label15"
-      Tab(2).Control(1)=   "Label12"
-      Tab(2).Control(2)=   "Label16"
-      Tab(2).Control(3)=   "Label18"
-      Tab(2).Control(4)=   "Label22"
-      Tab(2).Control(5)=   "Label25"
-      Tab(2).Control(6)=   "Label42"
-      Tab(2).Control(7)=   "Label43"
-      Tab(2).Control(8)=   "Label82"
-      Tab(2).Control(9)=   "Label83"
-      Tab(2).Control(10)=   "Label85"
-      Tab(2).Control(11)=   "Basic"
-      Tab(2).Control(12)=   "fda"
-      Tab(2).Control(13)=   "hra"
-      Tab(2).Control(14)=   "medall"
-      Tab(2).Control(15)=   "othall"
-      Tab(2).Control(16)=   "Gross"
-      Tab(2).Control(17)=   "lta"
-      Tab(2).Control(18)=   "txt_grosspay"
-      Tab(2).Control(19)=   "txt_pfsalary"
-      Tab(2).Control(20)=   "txt_esisalary"
-      Tab(2).Control(21)=   "Frame11"
+      Tab(2).Control(0)=   "Frame11"
+      Tab(2).Control(1)=   "txt_esisalary"
+      Tab(2).Control(2)=   "txt_pfsalary"
+      Tab(2).Control(3)=   "txt_grosspay"
+      Tab(2).Control(4)=   "lta"
+      Tab(2).Control(5)=   "Gross"
+      Tab(2).Control(6)=   "othall"
+      Tab(2).Control(7)=   "medall"
+      Tab(2).Control(8)=   "hra"
+      Tab(2).Control(9)=   "fda"
+      Tab(2).Control(10)=   "Basic"
+      Tab(2).Control(11)=   "Label85"
+      Tab(2).Control(12)=   "Label83"
+      Tab(2).Control(13)=   "Label82"
+      Tab(2).Control(14)=   "Label43"
+      Tab(2).Control(15)=   "Label42"
+      Tab(2).Control(16)=   "Label25"
+      Tab(2).Control(17)=   "Label22"
+      Tab(2).Control(18)=   "Label18"
+      Tab(2).Control(19)=   "Label16"
+      Tab(2).Control(20)=   "Label12"
+      Tab(2).Control(21)=   "Label15"
       Tab(2).ControlCount=   22
       TabCaption(3)   =   "STANDARD DEDUCTIONS"
       TabPicture(3)   =   "emp_mas_entry.frx":1736
@@ -675,7 +683,7 @@ Begin VB.Form emp_mas_entry
       End
       Begin VB.TextBox txt_Year_Passed 
          Height          =   285
-         Left            =   -72480
+         Left            =   2520
          TabIndex        =   190
          Top             =   1320
          Width           =   1455
@@ -738,14 +746,14 @@ Begin VB.Form emp_mas_entry
       Begin VB.CommandButton cmdr 
          Caption         =   "R"
          Height          =   195
-         Left            =   10320
+         Left            =   -64680
          TabIndex        =   175
          Top             =   2730
          Width           =   255
       End
       Begin VB.ComboBox weekly_off_lst 
          Height          =   315
-         Left            =   -72480
+         Left            =   2520
          Style           =   2  'Dropdown List
          TabIndex        =   172
          Top             =   4170
@@ -1007,7 +1015,7 @@ Begin VB.Form emp_mas_entry
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin VB.Label Label89 
@@ -1088,7 +1096,7 @@ Begin VB.Form emp_mas_entry
          Caption         =   "Relationship"
          ForeColor       =   &H00C00000&
          Height          =   1020
-         Left            =   480
+         Left            =   -74520
          TabIndex        =   92
          Top             =   930
          Width           =   8145
@@ -1210,7 +1218,7 @@ Begin VB.Form emp_mas_entry
       End
       Begin VB.ComboBox qualify_cmb 
          Height          =   315
-         Left            =   -72480
+         Left            =   2520
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   76
@@ -1235,7 +1243,7 @@ Begin VB.Form emp_mas_entry
       End
       Begin VB.ComboBox desi_cmb 
          Height          =   315
-         Left            =   -72480
+         Left            =   2520
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   20
@@ -1255,7 +1263,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00C00000&
          Height          =   645
-         Left            =   6000
+         Left            =   -69000
          TabIndex        =   74
          Top             =   2490
          Width           =   2760
@@ -1332,7 +1340,7 @@ Begin VB.Form emp_mas_entry
       End
       Begin VB.Frame Frame4 
          Height          =   600
-         Left            =   465
+         Left            =   -74535
          TabIndex        =   68
          Top             =   1770
          Width           =   9825
@@ -1425,7 +1433,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   4395
-         Left            =   -68280
+         Left            =   6720
          TabIndex        =   65
          Top             =   1170
          Width           =   4635
@@ -1508,7 +1516,7 @@ Begin VB.Form emp_mas_entry
             _ExtentX        =   2566
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin VB.Label Label50 
@@ -1763,7 +1771,7 @@ Begin VB.Form emp_mas_entry
       End
       Begin VB.ComboBox emptype_cmb 
          Height          =   315
-         Left            =   -72480
+         Left            =   2520
          Style           =   2  'Dropdown List
          TabIndex        =   22
          Top             =   3450
@@ -1771,7 +1779,7 @@ Begin VB.Form emp_mas_entry
       End
       Begin VB.ComboBox work_cmb 
          Height          =   315
-         Left            =   -72480
+         Left            =   2520
          Style           =   2  'Dropdown List
          TabIndex        =   21
          Top             =   2850
@@ -1779,7 +1787,7 @@ Begin VB.Form emp_mas_entry
       End
       Begin VB.ComboBox dept_cmb 
          Height          =   315
-         Left            =   -72480
+         Left            =   2520
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   19
@@ -1797,14 +1805,14 @@ Begin VB.Form emp_mas_entry
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   9090
+         Left            =   -65910
          TabIndex        =   10
          Top             =   2730
          Width           =   1155
       End
       Begin TabDlg.SSTab SSTab2 
          Height          =   2355
-         Left            =   1080
+         Left            =   -73920
          TabIndex        =   46
          Top             =   3330
          Width           =   8355
@@ -2040,7 +2048,7 @@ Begin VB.Form emp_mas_entry
          Caption         =   "GENDER"
          ForeColor       =   &H00C00000&
          Height          =   1020
-         Left            =   8880
+         Left            =   -66120
          TabIndex        =   44
          Top             =   930
          Width           =   1425
@@ -2077,7 +2085,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00C00000&
          Height          =   780
-         Left            =   480
+         Left            =   -74520
          TabIndex        =   41
          Top             =   2490
          Width           =   5205
@@ -2090,7 +2098,7 @@ Begin VB.Form emp_mas_entry
             _ExtentX        =   2566
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin MSComCtl2.DTPicker dob 
@@ -2102,7 +2110,7 @@ Begin VB.Form emp_mas_entry
             _ExtentX        =   2487
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   130547713
+            Format          =   125829121
             CurrentDate     =   37491
          End
          Begin VB.Label Label2 
@@ -2172,7 +2180,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   189
          Top             =   1320
          Width           =   2175
@@ -2599,7 +2607,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   79
          Top             =   4230
          Width           =   2175
@@ -2607,7 +2615,7 @@ Begin VB.Form emp_mas_entry
       Begin VB.Label Label44 
          Caption         =   "Label44"
          Height          =   30
-         Left            =   -73320
+         Left            =   1680
          TabIndex        =   78
          Top             =   3015
          Width           =   30
@@ -2625,7 +2633,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   77
          Top             =   840
          Width           =   2175
@@ -2830,7 +2838,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   55
          Top             =   2370
          Width           =   2175
@@ -2848,7 +2856,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   54
          Top             =   3450
          Width           =   2175
@@ -2866,7 +2874,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   53
          Top             =   2850
          Width           =   2175
@@ -2884,7 +2892,7 @@ Begin VB.Form emp_mas_entry
          EndProperty
          ForeColor       =   &H00FF0000&
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   52
          Top             =   1830
          Width           =   2175
@@ -2893,7 +2901,7 @@ Begin VB.Form emp_mas_entry
          Caption         =   "BLOOD GROUP"
          ForeColor       =   &H00C00000&
          Height          =   210
-         Left            =   9060
+         Left            =   -65940
          TabIndex        =   49
          Top             =   2490
          Width           =   1275
@@ -4536,8 +4544,8 @@ End Sub
 Private Sub empedit_cmb_Click()
     fillgrid
     searchopt = 1
-    txt_newname.Text = ""
-    txt_father_name.Text = ""
+''    txt_newname.Text = ""
+  ''  txt_father_name.Text = ""
     dt_resigned.Value = Format(Now, "dd/mm/yyyy")
     savechk = 1
     Set paydb = New ADODB.Connection
@@ -4564,8 +4572,8 @@ Private Sub empedit_cmb_Click()
        emp_name = empedit_cmb.Text 'empedit_cmb.ItemData(empedit_cmb.ListIndex)
        
 
-       txt_newname.Text = empedit_cmb.Text
-       txt_father_name.Text = payrs.Fields("emp_fname")
+''       txt_newname.Text = empedit_cmb.Text
+  ''     txt_father_name.Text = payrs.Fields("emp_fname")
        
        fathername = payrs.Fields("emp_fname")
        If payrs.Fields("emp_sex") = "M" Then

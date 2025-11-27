@@ -456,7 +456,7 @@ Begin VB.Form frm_od_entries
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yyyy HH:MM"
-            Format          =   131596289
+            Format          =   130088961
             CurrentDate     =   42278
          End
          Begin MSComCtl2.DTPicker dt_to 
@@ -478,7 +478,7 @@ Begin VB.Form frm_od_entries
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yyyy HH:MM"
-            Format          =   131596289
+            Format          =   130088961
             CurrentDate     =   42278
          End
          Begin MSComCtl2.DTPicker dtout 
@@ -500,7 +500,7 @@ Begin VB.Form frm_od_entries
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "HH:mm:ss"
-            Format          =   131596291
+            Format          =   130088963
             CurrentDate     =   41387.375
          End
          Begin MSComCtl2.DTPicker dtIn 
@@ -522,7 +522,7 @@ Begin VB.Form frm_od_entries
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "HH:mm:ss"
-            Format          =   131596291
+            Format          =   130088963
             CurrentDate     =   41387.75
          End
          Begin VB.Label Label5 
@@ -773,7 +773,7 @@ Begin VB.Form frm_od_entries
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   131596289
+         Format          =   130088961
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -785,7 +785,7 @@ Begin VB.Form frm_od_entries
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   131596289
+         Format          =   130088961
          CurrentDate     =   39359
       End
       Begin VB.Label Label10 
@@ -847,7 +847,7 @@ Begin VB.Form frm_od_entries
       _ExtentY        =   661
       _Version        =   393216
       CustomFormat    =   "HH:MM"
-      Format          =   131596290
+      Format          =   130088962
       CurrentDate     =   41387.3333333333
    End
    Begin MSComCtl2.DTPicker dt2 
@@ -861,7 +861,7 @@ Begin VB.Form frm_od_entries
       _ExtentY        =   661
       _Version        =   393216
       CustomFormat    =   "HH:MM"
-      Format          =   131596290
+      Format          =   130088962
       CurrentDate     =   41387.7083333333
    End
    Begin MSComCtl2.DTPicker dt_entdate 
@@ -883,7 +883,7 @@ Begin VB.Form frm_od_entries
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   131596289
+      Format          =   130088961
       CurrentDate     =   42278
    End
    Begin VB.Label Label3 
@@ -935,9 +935,10 @@ Private Sub cmd_Assign_Click()
      min1 = (DatePart("h", dtout.Value) * 60) + DatePart("n", dtout.Value)
      min2 = (DatePart("h", dtIn.Value) * 60) + DatePart("n", dtIn.Value)
      
-
+    fdate = Day(dt_from.Value)
+    sdate = Day(dt_to.Value)
      
-     If min1 > min2 Then
+     If min1 > min2 And fdate = sdate Then
          MsgBox ("Error in FROM and TO times . Please rectify and Continue.. ")
          Exit Sub
      End If

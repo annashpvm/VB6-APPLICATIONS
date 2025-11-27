@@ -577,8 +577,8 @@ Private Sub mnu_permission_entry_Click()
 End Sub
 
 Private Sub mnu_prodn_incentive_Click()
-   frm_prodn_incentive.Show
-   frm_prodn_incentive.ZOrder
+   frm_overtime.Show
+   frm_overtime.ZOrder
 End Sub
 
 Private Sub mnu_prodn_incentive_rep_Click()

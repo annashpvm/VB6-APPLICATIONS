@@ -9,8 +9,8 @@ Begin VB.Form attn_monthwise
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   3195
+   ScaleWidth      =   4680
    Visible         =   0   'False
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame3 

@@ -10,8 +10,8 @@ Begin VB.Form atten_ent
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   3195
+   ScaleWidth      =   4680
    WindowState     =   2  'Maximized
    Begin VB.CommandButton NEW 
       BackColor       =   &H00C0E0FF&
@@ -91,7 +91,7 @@ Begin VB.Form atten_ent
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   130678785
+      Format          =   130482177
       CurrentDate     =   37519
    End
    Begin VB.ListBox lst_name 

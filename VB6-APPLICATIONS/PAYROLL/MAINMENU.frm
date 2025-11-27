@@ -74,10 +74,16 @@ Begin VB.MDIForm MAINMENU
       End
       Begin VB.Menu pf_nominee_mas 
          Caption         =   "PF NOMINEE MASTER "
+         Visible         =   0   'False
       End
       Begin VB.Menu employee_position_master 
-         Caption         =   "EMPLOYEE POSITION MASTER"
-         Visible         =   0   'False
+         Caption         =   "EMPLOYEE WORKED POSITION MASTER"
+         Begin VB.Menu mnu_production 
+            Caption         =   "Production"
+         End
+         Begin VB.Menu mnu_mechanical 
+            Caption         =   "Mechanical"
+         End
       End
       Begin VB.Menu LINE1 
          Caption         =   "-"
@@ -391,9 +397,9 @@ Private Sub CS_ATTN_Click()
     cbeattn_entry.Show
 End Sub
 
-Private Sub employee_position_master_Click()
- emp_mas_position.Show
-End Sub
+''Private Sub employee_position_master_Click()
+'' emp_mas_position.Show
+''End Sub
 
 Private Sub MILLS_ENTRY_Click()
    master_company.Show
@@ -613,6 +619,7 @@ Private Sub mnu_emp_salary_slot_Click()
     emp_mas_slot_entry.ZOrder
 End Sub
 
+
 Private Sub mnu_employee_additional_Click()
     emptype_chk = 0
     frm_worker_additional_amount.Show
@@ -651,6 +658,11 @@ End Sub
 Private Sub mnu_master_details_Click()
     frm_master_details.Show
     frm_master_details.ZOrder
+End Sub
+
+Private Sub mnu_mechanical_Click()
+    emp_worked_position_mechanical.Show
+    emp_worked_position_mechanical.ZOrder
 End Sub
 
 Private Sub mnu_ot_import_Click()
@@ -716,6 +728,11 @@ End Sub
 
 Private Sub mnu_present_days_Click()
 present_days.Show
+End Sub
+
+Private Sub mnu_production_Click()
+    emp_worked_position_Production.Show
+    emp_worked_position_Production.ZOrder
 End Sub
 
 Private Sub mnu_Rep_overtime_Click()

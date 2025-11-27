@@ -6,8 +6,8 @@ Begin VB.Form emp_mas_position
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   3090
-   ScaleWidth      =   4680
+   ScaleHeight     =   10935
+   ScaleWidth      =   20160
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame1 
       Height          =   7695

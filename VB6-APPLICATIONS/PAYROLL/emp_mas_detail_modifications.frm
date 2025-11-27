@@ -1567,120 +1567,99 @@ Begin VB.Form emp_mas_detail_modifications
       TabCaption(1)   =   "PF and DEPT. DETAILS"
       TabPicture(1)   =   "emp_mas_detail_modifications.frx":1094
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "weekly_off_lst"
-      Tab(1).Control(1)=   "qualify_cmb"
-      Tab(1).Control(2)=   "desi_cmb"
-      Tab(1).Control(3)=   "Frame3"
-      Tab(1).Control(4)=   "emptype_cmb"
-      Tab(1).Control(5)=   "work_cmb"
-      Tab(1).Control(6)=   "dept_cmb"
-      Tab(1).Control(7)=   "week_off"
-      Tab(1).Control(8)=   "Label44"
-      Tab(1).Control(9)=   "Label8"
-      Tab(1).Control(10)=   "DESI"
-      Tab(1).Control(11)=   "Label11"
-      Tab(1).Control(12)=   "Label10"
-      Tab(1).Control(13)=   "Label9"
+      Tab(1).Control(0)=   "Label9"
+      Tab(1).Control(1)=   "Label10"
+      Tab(1).Control(2)=   "Label11"
+      Tab(1).Control(3)=   "DESI"
+      Tab(1).Control(4)=   "Label8"
+      Tab(1).Control(5)=   "Label44"
+      Tab(1).Control(6)=   "week_off"
+      Tab(1).Control(7)=   "dept_cmb"
+      Tab(1).Control(8)=   "work_cmb"
+      Tab(1).Control(9)=   "emptype_cmb"
+      Tab(1).Control(10)=   "Frame3"
+      Tab(1).Control(11)=   "desi_cmb"
+      Tab(1).Control(12)=   "qualify_cmb"
+      Tab(1).Control(13)=   "weekly_off_lst"
       Tab(1).ControlCount=   14
       TabCaption(2)   =   "EARNINGS"
       TabPicture(2)   =   "emp_mas_detail_modifications.frx":10B0
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label85"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "Label83"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "Label82"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "Label43"
-      Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "Label42"
-      Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "Label25"
-      Tab(2).Control(5).Enabled=   0   'False
-      Tab(2).Control(6)=   "Label22"
-      Tab(2).Control(6).Enabled=   0   'False
-      Tab(2).Control(7)=   "Label18"
-      Tab(2).Control(7).Enabled=   0   'False
-      Tab(2).Control(8)=   "Label16"
-      Tab(2).Control(8).Enabled=   0   'False
-      Tab(2).Control(9)=   "Label12"
-      Tab(2).Control(9).Enabled=   0   'False
+      Tab(2).Control(0)=   "Basic"
+      Tab(2).Control(1)=   "fda"
+      Tab(2).Control(2)=   "hra"
+      Tab(2).Control(3)=   "medall"
+      Tab(2).Control(4)=   "othall"
+      Tab(2).Control(5)=   "Gross"
+      Tab(2).Control(6)=   "lta"
+      Tab(2).Control(7)=   "txt_grosspay"
+      Tab(2).Control(8)=   "txt_pfsalary"
+      Tab(2).Control(9)=   "txt_esisalary"
       Tab(2).Control(10)=   "Label15"
-      Tab(2).Control(10).Enabled=   0   'False
-      Tab(2).Control(11)=   "txt_esisalary"
-      Tab(2).Control(11).Enabled=   0   'False
-      Tab(2).Control(12)=   "txt_pfsalary"
-      Tab(2).Control(12).Enabled=   0   'False
-      Tab(2).Control(13)=   "txt_grosspay"
-      Tab(2).Control(13).Enabled=   0   'False
-      Tab(2).Control(14)=   "lta"
-      Tab(2).Control(14).Enabled=   0   'False
-      Tab(2).Control(15)=   "Gross"
-      Tab(2).Control(15).Enabled=   0   'False
-      Tab(2).Control(16)=   "othall"
-      Tab(2).Control(16).Enabled=   0   'False
-      Tab(2).Control(17)=   "medall"
-      Tab(2).Control(17).Enabled=   0   'False
-      Tab(2).Control(18)=   "hra"
-      Tab(2).Control(18).Enabled=   0   'False
-      Tab(2).Control(19)=   "fda"
-      Tab(2).Control(19).Enabled=   0   'False
-      Tab(2).Control(20)=   "Basic"
-      Tab(2).Control(20).Enabled=   0   'False
+      Tab(2).Control(11)=   "Label12"
+      Tab(2).Control(12)=   "Label16"
+      Tab(2).Control(13)=   "Label18"
+      Tab(2).Control(14)=   "Label22"
+      Tab(2).Control(15)=   "Label25"
+      Tab(2).Control(16)=   "Label42"
+      Tab(2).Control(17)=   "Label43"
+      Tab(2).Control(18)=   "Label82"
+      Tab(2).Control(19)=   "Label83"
+      Tab(2).Control(20)=   "Label85"
       Tab(2).ControlCount=   21
       TabCaption(3)   =   "STANDARD DEDUCTIONS"
       TabPicture(3)   =   "emp_mas_detail_modifications.frx":10CC
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "txt_esiamt"
-      Tab(3).Control(1)=   "txt_itded"
-      Tab(3).Control(2)=   "rd"
-      Tab(3).Control(3)=   "lic"
-      Tab(3).Control(4)=   "pfamt"
+      Tab(3).Control(0)=   "Label27"
+      Tab(3).Control(1)=   "Label28"
+      Tab(3).Control(2)=   "Label29"
+      Tab(3).Control(3)=   "pfpercentage"
+      Tab(3).Control(4)=   "Label80"
       Tab(3).Control(5)=   "Label84"
-      Tab(3).Control(6)=   "Label80"
-      Tab(3).Control(7)=   "pfpercentage"
-      Tab(3).Control(8)=   "Label29"
-      Tab(3).Control(9)=   "Label28"
-      Tab(3).Control(10)=   "Label27"
+      Tab(3).Control(6)=   "pfamt"
+      Tab(3).Control(7)=   "lic"
+      Tab(3).Control(8)=   "rd"
+      Tab(3).Control(9)=   "txt_itded"
+      Tab(3).Control(10)=   "txt_esiamt"
       Tab(3).ControlCount=   11
       TabCaption(4)   =   "BANK ACCOUNT DETAILS"
       TabPicture(4)   =   "emp_mas_detail_modifications.frx":10E8
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "cmb_bank"
-      Tab(4).Control(1)=   "txt_bank_acno"
-      Tab(4).Control(2)=   "txt_email"
-      Tab(4).Control(3)=   "txt_bank_ifsc"
+      Tab(4).Control(0)=   "lbl_bank_ifsc"
+      Tab(4).Control(1)=   "Label56"
+      Tab(4).Control(2)=   "Label55"
+      Tab(4).Control(3)=   "Label54"
       Tab(4).Control(4)=   "cmd_ref_bank"
-      Tab(4).Control(5)=   "Label54"
-      Tab(4).Control(6)=   "Label55"
-      Tab(4).Control(7)=   "Label56"
-      Tab(4).Control(8)=   "lbl_bank_ifsc"
+      Tab(4).Control(5)=   "txt_bank_ifsc"
+      Tab(4).Control(6)=   "txt_email"
+      Tab(4).Control(7)=   "txt_bank_acno"
+      Tab(4).Control(8)=   "cmb_bank"
       Tab(4).ControlCount=   9
       TabCaption(5)   =   "EMPLOYEE STATUS"
       TabPicture(5)   =   "emp_mas_detail_modifications.frx":1104
       Tab(5).ControlEnabled=   0   'False
       Tab(5).Control(0)=   "Label49"
-      Tab(5).Control(1)=   "cmb_empstatus"
-      Tab(5).Control(2)=   "frame_resigned"
+      Tab(5).Control(1)=   "frame_resigned"
+      Tab(5).Control(2)=   "cmb_empstatus"
       Tab(5).ControlCount=   3
       TabCaption(6)   =   "OTHERS"
       TabPicture(6)   =   "emp_mas_detail_modifications.frx":1120
       Tab(6).ControlEnabled=   0   'False
-      Tab(6).Control(0)=   "cmb_work_hrs"
-      Tab(6).Control(1)=   "cmb_pi_eligbile_yn"
-      Tab(6).Control(2)=   "txt_ie"
-      Tab(6).Control(3)=   "txt_oe"
-      Tab(6).Control(4)=   "txt_interviewername"
-      Tab(6).Control(5)=   "txt_preinterviewby"
-      Tab(6).Control(6)=   "txt_appointedby"
+      Tab(6).Control(0)=   "Label64"
+      Tab(6).Control(1)=   "Label65"
+      Tab(6).Control(2)=   "Label66"
+      Tab(6).Control(3)=   "Label67"
+      Tab(6).Control(4)=   "Label68"
+      Tab(6).Control(5)=   "Label69"
+      Tab(6).Control(6)=   "Label72"
       Tab(6).Control(7)=   "Label73"
-      Tab(6).Control(8)=   "Label72"
-      Tab(6).Control(9)=   "Label69"
-      Tab(6).Control(10)=   "Label68"
-      Tab(6).Control(11)=   "Label67"
-      Tab(6).Control(12)=   "Label66"
-      Tab(6).Control(13)=   "Label65"
-      Tab(6).Control(14)=   "Label64"
+      Tab(6).Control(8)=   "txt_appointedby"
+      Tab(6).Control(9)=   "txt_preinterviewby"
+      Tab(6).Control(10)=   "txt_interviewername"
+      Tab(6).Control(11)=   "txt_oe"
+      Tab(6).Control(12)=   "txt_ie"
+      Tab(6).Control(13)=   "cmb_pi_eligbile_yn"
+      Tab(6).Control(14)=   "cmb_work_hrs"
       Tab(6).ControlCount=   15
       Begin VB.Frame Frame2 
          Caption         =   "Date of "
@@ -1708,7 +1687,7 @@ Begin VB.Form emp_mas_detail_modifications
             _ExtentX        =   2566
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   119603201
+            Format          =   125632513
             CurrentDate     =   37491
          End
          Begin MSComCtl2.DTPicker dob 
@@ -1720,7 +1699,7 @@ Begin VB.Form emp_mas_detail_modifications
             _ExtentX        =   2487
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   119603201
+            Format          =   125632513
             CurrentDate     =   37491
          End
          Begin VB.Label Label1 
@@ -2052,7 +2031,7 @@ Begin VB.Form emp_mas_detail_modifications
             _ExtentX        =   2566
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   119603201
+            Format          =   125632513
             CurrentDate     =   37491
          End
          Begin VB.Label Label26 
@@ -2407,6 +2386,7 @@ Begin VB.Form emp_mas_detail_modifications
          Width           =   5895
       End
       Begin VB.TextBox txt_bank_acno 
+         Enabled         =   0   'False
          Height          =   450
          Left            =   -71640
          MaxLength       =   20
@@ -2504,6 +2484,7 @@ Begin VB.Form emp_mas_detail_modifications
          End
       End
       Begin VB.ComboBox cmb_empstatus 
+         Enabled         =   0   'False
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   9.75
@@ -2570,7 +2551,7 @@ Begin VB.Form emp_mas_detail_modifications
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   119603201
+            Format          =   125632513
             CurrentDate     =   37491
          End
          Begin VB.Label Label57 
@@ -2667,6 +2648,7 @@ Begin VB.Form emp_mas_detail_modifications
          Width           =   1455
       End
       Begin VB.TextBox txt_bank_ifsc 
+         Enabled         =   0   'False
          Height          =   450
          Left            =   -71640
          MaxLength       =   15
@@ -2899,13 +2881,13 @@ Begin VB.Form emp_mas_detail_modifications
          TabCaption(1)   =   "PERMENANT ADDRESS"
          TabPicture(1)   =   "emp_mas_detail_modifications.frx":1160
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Label6"
-         Tab(1).Control(1)=   "Label7"
-         Tab(1).Control(2)=   "p_add1"
+         Tab(1).Control(0)=   "chk"
+         Tab(1).Control(1)=   "p_pin"
+         Tab(1).Control(2)=   "p_add2"
          Tab(1).Control(3)=   "p_add3"
-         Tab(1).Control(4)=   "p_add2"
-         Tab(1).Control(5)=   "p_pin"
-         Tab(1).Control(6)=   "chk"
+         Tab(1).Control(4)=   "p_add1"
+         Tab(1).Control(5)=   "Label7"
+         Tab(1).Control(6)=   "Label6"
          Tab(1).ControlCount=   7
          Begin VB.TextBox c_add1 
             Height          =   375
@@ -4909,43 +4891,6 @@ Private Sub emp_save_Click()
       payrs.Fields("emp_workplace") = "OTH"
       wplace = "OTH"
    End If
-   If cmb_pf_eligible.Text = "YES" Then
-      payrs.Fields("emp_pfeligible") = "Y"
-      payrs.Fields("emp_pfjoin_date") = dt_pf_join.Value
-   Else
-      payrs.Fields("emp_pfeligible") = "N"
-      payrs.Fields("emp_pfjoin_date") = 0
-   End If
-   payrs.Fields("emp_grosspay") = Val(txt_grosspay.Text)
-   payrs.Fields("emp_pfsalary") = Val(txt_pfsalary.Text)
-   payrs.Fields("emp_pfp") = Val(PF)
-   payrs.Fields("emp_pfno") = Val(pfno)
-   payrs.Fields("emp_uan") = txt_uan.Text
-   payrs.Fields("emp_basic") = Val(Basic)
-      payrs.Fields("emp_splpay") = Val(spl_pay)
-   payrs.Fields("emp_fda") = Val(fda)
-   payrs.Fields("emp_vda") = Val(vda)
-   payrs.Fields("emp_hra") = Val(hra)
-   payrs.Fields("emp_convall") = Val(ca)
-   payrs.Fields("emp_medall") = Val(medall)
-   payrs.Fields("emp_splall") = Val(splall)
-   payrs.Fields("emp_teaall") = Val(teaall)
-   payrs.Fields("emp_attall") = Val(attall)
-   payrs.Fields("emp_healthall") = Val(healthall)
-   payrs.Fields("emp_washall") = Val(washall)
-   payrs.Fields("emp_mealsall") = Val(mealsall)
-   payrs.Fields("emp_lta") = Val(lta)
-   payrs.Fields("emp_eduall") = Val(eduall)
-   payrs.Fields("emp_magall") = Val(mazall)
-   payrs.Fields("emp_fuelall") = Val(fuelall)
-   payrs.Fields("emp_profall") = Val(profall)
-   payrs.Fields("emp_phoneall") = Val(phoneall)
-   payrs.Fields("emp_cityall") = Val(cityall)
-   payrs.Fields("emp_othall") = Val(othall)
-   payrs.Fields("emp_lic") = Val(lic)
-   payrs.Fields("emp_rd") = Val(rd)
-   payrs.Fields("emp_itded") = Val(txt_itded.Text)
-   ''payrs.Fields("emp_fpcode") = Val(FPCODE)
    payrs.Fields("emp_holiday") = weekly_off_lst.Text
    
    If cmb_empstatus.Text = "CURRENT EMPLOYEE" Then
@@ -4966,23 +4911,6 @@ Private Sub emp_save_Click()
        payrs.Fields("emp_esieligible") = "N"
    End If
    
-   payrs.Fields("emp_bank") = cmb_bank.ItemData(cmb_bank.ListIndex)
-   payrs.Fields("emp_bank_acno") = txt_bank_acno.Text
-   payrs.Fields("emp_bank_ifsc") = txt_bank_ifsc.Text
-   payrs.Fields("emp_email") = txt_email.Text
-   
-   payrs.Fields("emp_esino") = txt_esino.Text
-   payrs.Fields("emp_resign_reason") = txt_reason.Text
-   
-   If cmb_empstatus.Text = "RESIGNED" Then
-       payrs.Fields("emp_resigneddate") = dt_resigned.Value
-       payrs.Fields("emp_reason") = cmb_reason.Text
-   Else
-       payrs.Fields("emp_resigneddate") = 0
-       payrs.Fields("emp_reason") = ""
-      
-   End If
-   payrs.Fields("emp_ctc") = ctc
    payrs.Fields("emp_interview_by") = txt_interviewername.Text
    payrs.Fields("emp_final_interview_by") = txt_preinterviewby.Text
    payrs.Fields("emp_appointed_by") = txt_appointedby.Text
@@ -5018,18 +4946,28 @@ Private Sub emp_save_Click()
    payrs.Fields("emp_location") = Left(Trim(txt_location.Text), 30)
    payrs.Fields("emp_costtype") = cmb_cost.Text
    
-   
+   If cmb_pf_eligible.Text = "YES" Then
+      payrs.Fields("emp_pfeligible") = "Y"
+      payrs.Fields("emp_pfjoin_date") = dt_pf_join.Value
+   Else
+      payrs.Fields("emp_pfeligible") = "N"
+      payrs.Fields("emp_pfjoin_date") = 0
+   End If
+
+
+   If cmb_esi_eligible.Text = "YES" Then
+       payrs.Fields("emp_esieligible") = "Y"
+   Else
+       payrs.Fields("emp_esieligible") = "N"
+   End If
+
+   payrs.Fields("emp_pfp") = Val(PF)
+   payrs.Fields("emp_pfno") = Val(pfno)
+   payrs.Fields("emp_esino") = txt_esino.Text
    payrs.Update
    payrs.Close
    MsgBox ("Data updated")
          
-   If savechk = 0 Then
-       sql = "insert into emp_eligible_leave values (" & company_code & "," & finyear & "," & year(doj.Value) & "," & emp_idcode.Text & ",0,'" & ecat & "','" & wplace & "' )"
-       paydb.Execute sql
-       
-       sql = "insert into attn_entry values (" & company_code & "," & finyear & ",1," & year(doj.Value) & "," & emp_idcode.Text & ",'" & ecat & "',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)"
-       paydb.Execute sql
-   End If
    refresh_data
 End Sub
 

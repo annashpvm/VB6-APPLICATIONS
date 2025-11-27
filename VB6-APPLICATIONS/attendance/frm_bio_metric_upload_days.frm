@@ -11,6 +11,19 @@ Begin VB.Form frm_bio_metric_upload_days
    ScaleHeight     =   8865
    ScaleWidth      =   14205
    WindowState     =   2  'Maximized
+   Begin MSComCtl2.DTPicker month_start_date 
+      Height          =   375
+      Left            =   8160
+      TabIndex        =   24
+      Top             =   5280
+      Width           =   1575
+      _ExtentX        =   2778
+      _ExtentY        =   661
+      _Version        =   393216
+      Enabled         =   0   'False
+      Format          =   130220033
+      CurrentDate     =   44565
+   End
    Begin VB.CommandButton Command2 
       Caption         =   "UPDATE UNREGISTED  EMPOYEE"
       Enabled         =   0   'False
@@ -283,7 +296,7 @@ Begin VB.Form frm_bio_metric_upload_days
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130351105
+         Format          =   130220033
          CurrentDate     =   44565
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -295,7 +308,7 @@ Begin VB.Form frm_bio_metric_upload_days
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130351105
+         Format          =   130220033
          CurrentDate     =   44565
       End
       Begin VB.Label Label10 
@@ -339,13 +352,13 @@ Begin VB.Form frm_bio_metric_upload_days
       Height          =   375
       Left            =   8160
       TabIndex        =   16
-      Top             =   5400
+      Top             =   5880
       Visible         =   0   'False
       Width           =   1575
       _ExtentX        =   2778
       _ExtentY        =   661
       _Version        =   393216
-      Format          =   130351105
+      Format          =   130220033
       CurrentDate     =   44565
    End
    Begin VB.Label lbl_emp 
@@ -407,15 +420,25 @@ Private Sub cmd_process_Click()
 End Sub
 
 Private Sub cmd_upload_Click()
-       
 ''   all_chk = 1
 ''   update_leave_od_data
 ''   cmd_exit.SetFocus
 ''
 ''
+
+   pst_ans = MsgBox("Are u sure want to PROCESS Attendance Logs ...  ", vbYesNo)
+   If pst_ans = vbNo Then Exit Sub
+      
+    
+ 
+      
    pst_qry = "update bio_devicelogs set ad_upd ='N' where ad_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date + 1, "MM/dd/yyyy") & "'"
    paydb.Execute pst_qry
-   
+
+
+    pst_qry = "update bio_devicelogs set ad_upd ='Y' where ad_punch = 'out'  AND ad_auto = 'A' and ad_date = '" & Format(month_start_date.Value, "MM/dd/yyyy") & "' and DATEPART(HOUR, ad_logdate) < 8"
+    paydb.Execute pst_qry
+
    all_chk = 1
    update_leave_od_data
    cmd_exit.SetFocus
@@ -1309,7 +1332,7 @@ paydb.Execute pst_qry
     paydb.Execute sql
     
 ''FOR 7.00 AM to 03.00 PM
-    sql = "update bio_device_shiftlogs set ds_shift_actual = '07.00AM-03.00PM'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 07 and DATEpart(hour,ds_shift_in) <= 07"
+    sql = "update bio_device_shiftlogs set ds_shift_actual = '08.00AM-04.00PM'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 07 and DATEpart(hour,ds_shift_in) <= 07"
     paydb.Execute sql
 ''FOR 8.00 AM to 05.00 PM
 ''    sql = "update bio_device_shiftlogs set ds_shift_actual = '08.00AM-04.00PM'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 08 and DATEpart(hour,ds_shift_in) <= 08"
@@ -1651,6 +1674,10 @@ paydb.Execute pst_qry
   paydb.Execute sql
  
  
+
+    sql = "update bio_device_shiftlogs set ds_status = '폟P'  WHERE  ds_shift  = 'H' and ds_status = '폩폗'   and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' "
+    paydb.Execute sql
+
  
  
 1000:
@@ -1673,6 +1700,30 @@ paydb.Execute pst_qry
     'end
 
 
+
+'' New Addditon on 28/10/2025 for more then 9.05 AM in punch
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode  and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('A SHIFT','B SHIFT','C SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '09:00:58'  AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '12:35:00' AND  ds_date >= '2025-10-27'"
+    paydb.Execute sql
+    
+    sql = "update bio_device_shiftlogs set ds_status = 'P' from  bio_device_shiftlogs , bio_emp_oddetails  WHERE ds_fpcode = empod_fpcode  and empod_date = ds_date and   ds_date between '" & Format(st_date, "MM/dd/yyyy") & "'  and  '" & Format(end_date, "MM/dd/yyyy") & "' AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '09:00:01' and CONVERT(VARCHAR(8), ds_shift_in, 108) < '12:35:00' and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('A SHIFT','B SHIFT','C SHIFT') and ds_date >= '2025-10-27'  and empod_fromtime > 8 and empod_fromtime < 10 and ds_sft_hrs > 7"
+    paydb.Execute sql
+    
+'' New Addditon on 17/11/2025 for A SHIFT
+'' A SHIFT
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('A SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '06:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '07:00:00' AND ds_date >= '2025-11-18' and bioemp_dept <> 'DRIVER' "
+    paydb.Execute sql
+
+'' B SHIFT
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('B SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '14:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '16:00:00' AND ds_date >= '2025-11-18' and bioemp_dept <> 'DRIVER' "
+    paydb.Execute sql
+'' C SHIFT
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('C SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '22:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '23:30:00' AND ds_date >= '2025-11-18' and bioemp_dept <> 'DRIVER' "
+    paydb.Execute sql
+'' 6 PM TO 6AM
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('06.00PM-06.00AM')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '18:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '19:30:00' AND ds_date >= '2025-11-18' "
+    paydb.Execute sql
+     
+        
  
 700:
 
@@ -2122,7 +2173,7 @@ End If
     
     skip_empcode = skip_empcode + ")"
 
- 
+    cmd_exit.SetFocus
 
     ''MsgBox ("Updated...")
     Exit Sub
@@ -2457,8 +2508,11 @@ Public Sub find_dates()
     End If
     
     end_date = DateValue(Str(mmon) + "/" + Str(mdays) + "/" + cmb_year.Text) + 1
+    
     st_date = end_date - Day(end_date - 1)
+    
     monthend_date.Value = end_date - 1
+    month_start_date.Value = st_date
 
 
     If end_date.Value > Now Then

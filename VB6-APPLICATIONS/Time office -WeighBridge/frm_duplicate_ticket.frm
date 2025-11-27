@@ -97,7 +97,7 @@ Begin VB.Form frm_duplicate_ticket
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   130875393
+         Format          =   130154497
          CurrentDate     =   45262
       End
       Begin VB.Label Label2 

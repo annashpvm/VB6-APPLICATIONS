@@ -9,8 +9,8 @@ Begin VB.Form frm_canteen_recovery
    ClientWidth     =   14520
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   9465
-   ScaleWidth      =   14520
+   ScaleHeight     =   10935
+   ScaleWidth      =   20160
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame3 
       Height          =   855
@@ -260,7 +260,7 @@ Begin VB.Form frm_canteen_recovery
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   121569281
+      Format          =   129957889
       CurrentDate     =   44592
    End
    Begin VB.Label lbl 
@@ -491,13 +491,21 @@ Private Sub fillgrid()
 
 End Sub
 
+Private Sub Refresh_Click()
+        fillgrid
+End Sub
+
 Private Sub save_Click()
        
 On Error GoTo err_handler
+  
+      If flx_data.Rows < 3 Then
+         MsgBox ("No Records to Save...")
+         Exit Sub
+      End If
+       
   Me.MousePointer = 11
   paydb.BeginTrans
-  
-       
        
        sql = "delete from canteen_recovery where cr_date = '" & Format(dt_entry, "MM/dd/yyyy") & "'"
        paydb.Execute sql

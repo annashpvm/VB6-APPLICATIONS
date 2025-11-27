@@ -475,7 +475,7 @@ Private Sub Form_Load()
 ''    user_cmb.AddItem ("PAYROLL-USER")
 ''    user_cmb.AddItem ("PAYROLL-HOD")
 ''    user_cmb.Text = "PAYROLL-USER"
-    ''password.Text = "Hari"
+    password.Text = "Hari"
 End Sub
 
 Private Sub opt_new_Click()

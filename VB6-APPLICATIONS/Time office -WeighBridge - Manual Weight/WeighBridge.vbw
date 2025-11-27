@@ -1,0 +1,11 @@
+ModMadeupsColor = 104, 104, 883, 520, 
+ModMadeupsErrorHandler = 0, 0, 0, 0, C
+frm_login = 104, 104, 883, 520, , 78, 78, 857, 494, C
+frm_mainmenu = 0, 0, 0, 0, C, 26, 26, 805, 442, C
+frm_weighbridge_entry = 78, 78, 857, 494, Z, 52, 52, 831, 468, C
+frm_item_master = 0, 0, 0, 0, C, 0, 0, 779, 416, C
+frm_itemgroup_master = 0, 0, 0, 0, C, 26, 26, 805, 442, C
+frm_party_master = 0, 0, 0, 0, C, 52, 52, 831, 468, C
+frm_import = 0, 0, 0, 0, C, 78, 78, 857, 494, C
+frm_duplicate_ticket = 0, 0, 0, 0, C, 104, 104, 883, 520, C
+frm_reports = 0, 0, 0, 0, C, 78, 78, 857, 494, C

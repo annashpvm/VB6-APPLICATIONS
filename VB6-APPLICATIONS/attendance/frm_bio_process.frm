@@ -388,7 +388,7 @@ Begin VB.Form frm_bio_process
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130154497
+         Format          =   130482177
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -400,7 +400,7 @@ Begin VB.Form frm_bio_process
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130154497
+         Format          =   130482177
          CurrentDate     =   39359
       End
       Begin VB.Label Label10 
@@ -459,7 +459,7 @@ Begin VB.Form frm_bio_process
       _ExtentY        =   661
       _Version        =   393216
       Enabled         =   0   'False
-      Format          =   130154497
+      Format          =   130482177
       CurrentDate     =   44565
    End
    Begin VB.Label lbl_emp 
@@ -631,7 +631,8 @@ On Error GoTo err_handler
     paydb.Execute pst_qry
 
 
-    sql = "update bio_device_shiftlogs set ds_shift_original = '', ds_shift = 'GS',ds_shift_actual = 'GS',ds_status = '', ds_no_of_punches = 0, ds_shift_in = 0 , ds_shift_out = 0,ds_shift_in2 = 0 , ds_shift_out2 = 0,ds_shift_in3 = 0 , ds_shift_out3 = 0,ds_shift_in4 = 0 , ds_shift_out4 = 0, ds_shift_in5 = 0 , ds_shift_out5 = 0 ,ds_shift_in6 = 0 , ds_shift_out6 = 0, ds_per_hrs = 0,ds_od_hrs = 0, ds_sft_hrs = 0,ds_sft_hrs1 = 0,ds_sft_hrs2 = 0  ,ds_sft_hrs3 = 0,ds_sft_hrs4 = 0,ds_sft_hrs5 = 0  ,ds_sft_hrs6 = 0   where ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' and  ds_fpcode in " & codelist
+''    sql = "update bio_device_shiftlogs set ds_shift_original = '', ds_shift = 'GS',ds_shift_actual = 'GS',ds_status = '', ds_no_of_punches = 0, ds_shift_in = 0 , ds_shift_out = 0,ds_shift_in2 = 0 , ds_shift_out2 = 0,ds_shift_in3 = 0 , ds_shift_out3 = 0,ds_shift_in4 = 0 , ds_shift_out4 = 0, ds_shift_in5 = 0 , ds_shift_out5 = 0 ,ds_shift_in6 = 0 , ds_shift_out6 = 0, ds_per_hrs = 0,ds_od_hrs = 0, ds_sft_hrs = 0,ds_sft_hrs1 = 0,ds_sft_hrs2 = 0  ,ds_sft_hrs3 = 0,ds_sft_hrs4 = 0,ds_sft_hrs5 = 0  ,ds_sft_hrs6 = 0   where ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' and  ds_fpcode in " & codelist
+    sql = "update bio_device_shiftlogs set ds_shift_original = '', ds_shift = '',ds_shift_actual = '',ds_status = '', ds_no_of_punches = 0, ds_shift_in = 0 , ds_shift_out = 0,ds_shift_in2 = 0 , ds_shift_out2 = 0,ds_shift_in3 = 0 , ds_shift_out3 = 0,ds_shift_in4 = 0 , ds_shift_out4 = 0, ds_shift_in5 = 0 , ds_shift_out5 = 0 ,ds_shift_in6 = 0 , ds_shift_out6 = 0, ds_per_hrs = 0,ds_od_hrs = 0, ds_sft_hrs = 0,ds_sft_hrs1 = 0,ds_sft_hrs2 = 0  ,ds_sft_hrs3 = 0,ds_sft_hrs4 = 0,ds_sft_hrs5 = 0  ,ds_sft_hrs6 = 0   where ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' and  ds_fpcode in " & codelist
     paydb.Execute sql
 
 
@@ -1176,6 +1177,10 @@ On Error GoTo err_handler
     sql = "update bio_device_shiftlogs set ds_shift_actual = '08.00PM-08.00AM'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 19 and DATEpart(hour,ds_shift_in) <= 20 and ds_fpcode in " & codelist
     paydb.Execute sql
     
+    sql = "update bio_device_shiftlogs set ds_shift_actual = 'GS'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 8 and DATEpart(hour,ds_shift_in) <= 10 and   DATEpart(hour,ds_shift_out) >= 16  and ds_fpcode in " & codelist
+    paydb.Execute sql
+    
+    
     sql = "update bio_device_shiftlogs set ds_shift_actual = 'A SHIFT'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 5 and DATEpart(hour,ds_shift_in) <= 6 and   DATEpart(hour,ds_shift_out) >= 13  and  DATEpart(hour,ds_shift_out) <= 16 and ds_fpcode in " & codelist
     paydb.Execute sql
     sql = "update bio_device_shiftlogs set ds_shift_actual = 'B SHIFT'  from bio_device_shiftlogs WHERE  ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "' and DATEpart(hour,ds_shift_in) >= 13 and DATEpart(hour,ds_shift_in) <= 16 and  DATEpart(hour,ds_shift_out) >= 21  and  DATEpart(hour,ds_shift_out) <= 23 and ds_fpcode in " & codelist
@@ -1648,25 +1653,51 @@ On Error GoTo err_handler
  
 
 '' New Addditon on 28/10/2025 for more then 9.05 AM in punch
-    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('A SHIFT','B SHIFT','C SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '09:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '12:35:00' AND ds_date >= '2025-10-27' and ds_fpcode in " & codelist
+    
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual =  'GS'  AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '09:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '12:35:00' AND ds_date >= '2025-10-27'  and bioemp_dept <> 'DRIVER'  and ds_fpcode in " & codelist
     paydb.Execute sql
     
-    sql = "update bio_device_shiftlogs set ds_status = 'P' from  bio_device_shiftlogs , bio_emp_oddetails  WHERE ds_fpcode = empod_fpcode  and empod_date = ds_date and   ds_date between '" & Format(st_date, "MM/dd/yyyy") & "'  and  '" & Format(end_date, "MM/dd/yyyy") & "' AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '09:00:01'  AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '12:35:00'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('A SHIFT','B SHIFT','C SHIFT') and ds_date >= '2025-10-27'  and empod_fromtime > 8 and empod_fromtime < 10 and ds_sft_hrs > 7 and ds_fpcode in " & codelist
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = 'GS'  AND CONVERT(VARCHAR(8), ds_shift_out, 108) < '18:00:58' AND  ds_date >= '2025-11-28' and bioemp_dept <> 'DRIVER' and  CONVERT(VARCHAR(10), ds_shift_out, 120) = CONVERT(VARCHAR(10), ds_date, 120) and ds_od_hrs = 0 and ds_fpcode in " & codelist
+    paydb.Execute sql
+    
+    
+''    sql = "update bio_device_shiftlogs set ds_status = 'P' from  bio_device_shiftlogs , bio_emp_oddetails  WHERE ds_fpcode = empod_fpcode  and empod_date = ds_date and   ds_date between '" & Format(st_date, "MM/dd/yyyy") & "'  and  '" & Format(end_date, "MM/dd/yyyy") & "' AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '09:00:01'  AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '12:35:00'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual =  'GS' and ds_date >= '2025-10-27'  and empod_fromtime > 8 and empod_fromtime < 10 and ds_sft_hrs > 7 and ds_fpcode in " & codelist
+''    paydb.Execute sql
+
+'''' New Addditon on 17/11/2025 for A SHIFT
+'''' A SHIFT - IN PUNCH
+''    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = 'A SHIFT'   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '06:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '07:00:00' AND ds_date >= '2025-11-18' and bioemp_dept <> 'DRIVER'  and  bioemp_team = 'WORKER' and ds_fpcode in " & codelist
+''    paydb.Execute sql
+''
+''    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = 'A SHIFT'   AND CONVERT(VARCHAR(8), ds_shift_out, 108) < '14:00:58' AND ds_date >= '2025-11-28' and bioemp_dept <> 'DRIVER'  and  bioemp_team = 'WORKER' and ds_fpcode in " & codelist
+''    paydb.Execute sql
+
+
+
+
+'' B Shift
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual ='B SHIFT'   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '14:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '15:00:00' AND ds_date >= '2025-11-18'  and bioemp_dept <> 'DRIVER'  and  bioemp_team = 'WORKER' and ds_fpcode in " & codelist
     paydb.Execute sql
 
-'' New Addditon on 17/11/2025 for A SHIFT
-'' A SHIFT
-    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('A SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '06:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '07:00:00' AND ds_date >= '2025-11-18' and bioemp_dept <> 'DRIVER' and ds_fpcode in " & codelist
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = 'B SHIFT'   AND CONVERT(VARCHAR(8), ds_shift_out, 108) < '22:00:58'  AND ds_date >= '2025-11-28'  and bioemp_dept <> 'DRIVER'  and  bioemp_team = 'WORKER' and  CONVERT(VARCHAR(10), ds_shift_out, 120) = CONVERT(VARCHAR(10), ds_date, 120)  and ds_od_hrs = 0 and ds_fpcode in " & codelist
     paydb.Execute sql
 
-'' B SHIFT
-    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('B SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '14:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '15:00:00' AND ds_date >= '2025-11-18'  and bioemp_dept <> 'DRIVER'  and ds_fpcode in " & codelist
-    paydb.Execute sql
+
+
 '' C SHIFT
-    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('C SHIFT')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '22:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '23:30:00' AND ds_date >= '2025-11-18'  and bioemp_dept <> 'DRIVER' and ds_fpcode in " & codelist
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = 'C SHIFT'   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '22:00:58' AND ds_date >= '2025-11-18'  and bioemp_dept <> 'DRIVER'  and  bioemp_team = 'WORKER' and ds_fpcode in " & codelist
     paydb.Execute sql
+
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = 'C SHIFT'   AND CONVERT(VARCHAR(8), ds_shift_out, 108) < '06:00:58'  AND ds_date >= '2025-11-28'  and bioemp_dept <> 'DRIVER'  and  bioemp_team = 'WORKER' and ds_od_hrs = 0 and ds_fpcode in " & codelist
+    paydb.Execute sql
+
+
+
 '' 6 PM TO 6AM
-    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual not in ('06.00PM-06.00AM')   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '18:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '19:30:00' AND ds_date >= '2025-11-18' and ds_fpcode in " & codelist
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = '06.00PM-06.00AM'   AND CONVERT(VARCHAR(8), ds_shift_in, 108) > '18:00:58' AND CONVERT(VARCHAR(8), ds_shift_in, 108) < '19:30:00' AND ds_date >= '2025-11-18' and ds_fpcode in " & codelist
+    paydb.Execute sql
+ 
+    sql = "update bio_device_shiftlogs set ds_status = '폩폗' from bio_device_shiftlogs , bio_empmas WHERE ds_fpcode = bioemp_fpcode and ds_sft_hrs >= 4.00 and ds_date between '" & Format(st_date, "MM/dd/yyyy") & "' and  '" & Format(end_date, "MM/dd/yyyy") & "'  and  ds_shift <> 'H' and  ds_shift <> 'WOH'  and  ds_shift <> 'WO'  and ds_shift_actual = '06.00PM-06.00AM'   AND CONVERT(VARCHAR(8), ds_shift_out, 108) < '06:00:58'  AND ds_date >= '2025-11-28'  and bioemp_dept <> 'DRIVER'  and  bioemp_team = 'WORKER' and ds_od_hrs = 0 and ds_fpcode in " & codelist
     paydb.Execute sql
  
  
@@ -1862,7 +1893,7 @@ On Error GoTo err_handler
                     ch = ch + 1
                 ElseIf payrs.Fields(dayfind) = "HOP" Or payrs.Fields(dayfind) = "H폩(OD)" Then
                     hop = hop + 1
-                ElseIf payrs.Fields(dayfind) = "WOP" Or payrs.Fields(dayfind) = "WOP(OD)" Or payrs.Fields(dayfind) = "WO(OD)" Then
+                ElseIf payrs.Fields(dayfind) = "WOP" Or payrs.Fields(dayfind) = "WOPL" Or payrs.Fields(dayfind) = "WOP(OD)" Or payrs.Fields(dayfind) = "WO(OD)" Then
                     wop = wop + 1
                 ElseIf payrs.Fields(dayfind) = "WO" Or payrs.Fields(dayfind) = "WOL" Then
                     wo = wo + 1
@@ -2067,29 +2098,29 @@ On Error GoTo err_handler
    gst_repconnect = "dsn=pay_new;uid=sa;pwd=serdat"
 ''   cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\payslip.rpt"
 ''   cry_rep1.Formulas(0) = ("report_month = " & cmb_month.Text)
-   cry_rep1.Formulas(0) = ("report_month = '" & cmb_month.Text & "'")
-   cry_rep1.Formulas(1) = ("report_year = '" & cmb_year.Text & "'")
-   cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
-   cry_rep1.PrinterSelect
+   Cry_rep1.Formulas(0) = ("report_month = '" & cmb_month.Text & "'")
+   Cry_rep1.Formulas(1) = ("report_year = '" & cmb_year.Text & "'")
+   Cry_rep1.Formulas(2) = ("millname= '" & millname & "'")
+   Cry_rep1.PrinterSelect
    
    
    If opt_vou.Value = True Then
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou.rpt"
-      cry_rep1.ReplaceSelectionFormula ("{emp_voupay_mast.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
+      Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_vou.rpt"
+      Cry_rep1.ReplaceSelectionFormula ("{emp_voupay_mast.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
    ElseIf opt_regular.Value = True Then
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise.rpt"
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_full.rpt"
-      cry_rep1.ReplaceSelectionFormula ("{emp_mas.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
+      Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise.rpt"
+      Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\payroll\monthly_attendance_status_deptwise_full.rpt"
+      Cry_rep1.ReplaceSelectionFormula ("{emp_mas.emp_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
     
    Else
-     cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\cs\monthly_attendance_status.rpt"
-      cry_rep1.ReplaceSelectionFormula ("{mas_caemp.ca_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
+     Cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\cs\monthly_attendance_status.rpt"
+      Cry_rep1.ReplaceSelectionFormula ("{mas_caemp.ca_status} = 'A' and {bio_attendlogs.a_year} = " & Val(cmb_year.Text) & " and {bio_attendlogs.a_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & " and (" & sel_codes & ")")
 
    End If
    
-   cry_rep1.WindowState = crptMaximized
-   cry_rep1.Connect = gst_repconnect
-   cry_rep1.Action = 1
+   Cry_rep1.WindowState = crptMaximized
+   Cry_rep1.Connect = gst_repconnect
+   Cry_rep1.Action = 1
     
     
    Exit Sub

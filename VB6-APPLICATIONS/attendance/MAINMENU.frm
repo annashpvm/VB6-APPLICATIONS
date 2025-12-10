@@ -509,6 +509,9 @@ On Error GoTo err_handler
     paydb.Execute pst_qry
     
     
+    pst_qry = "insert into  bio_empmas (bioemp_company,bioemp_id,bioemp_fpcode,bioemp_name) values (  '1',  '10007', '10007', 'RAMESH KB' )"
+    paydb.Execute pst_qry
+    
     
     
     pst_qry = "update bio_empmas set  bioemp_status = (case when emp_status = 'A' then 'Working' else 'Resigned' end)  , bioemp_name = emp_name ,bioemp_gender = EMP_SEX,bioemp_dept = dept_name ,bioemp_team = (case when emp_cat = 'S' then 'STAFF' else 'WORKER' end) ,bioemp_workhrs = emp_work_hrs  ,bioemp_grosspay = emp_grosspay from emp_mas a,bio_empmas b,pdept_mas c where emp_dept = dept_code and bioemp_fpcode = emp_code"

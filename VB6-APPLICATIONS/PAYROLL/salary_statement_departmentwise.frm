@@ -391,7 +391,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub exit_Click()
+Private Sub EXIT_Click()
     Unload Me
 End Sub
 

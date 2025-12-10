@@ -368,7 +368,7 @@ Begin VB.Form frm_weighbridge_entry
          _Version        =   393216
          Enabled         =   0   'False
          CustomFormat    =   "dd/MM/yyyy hh:mm:ss  tt"
-         Format          =   120848387
+         Format          =   131792899
          CurrentDate     =   45257
       End
       Begin MSComCtl2.DTPicker dt_ticket 
@@ -390,7 +390,7 @@ Begin VB.Form frm_weighbridge_entry
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   120848385
+         Format          =   131792897
          CurrentDate     =   45257
       End
       Begin VB.TextBox txt_NetWt 
@@ -1188,7 +1188,7 @@ Private Sub cmd_Save_Click()
             txt_ticketNo.Text = adors("tikcetno")
          End If
       Else
-         pst_qry = "select ifnull(max(t_wb_ticketno),0)+1 as tikcetno  from trn_weighbridge_entry where t_wb_type = 'Z' and t_wb_year = " & gin_finid & "  and t_wb_compcode = " & compcode & "  and t_wb_date = '" & Format(dt_ticket, "yyyy-MM-dd") & "'"
+         pst_qry = "select ifnull(max(t_wb_ticketno),0)+1 as tikcetno  from shvpmtrn_weighbridge_entry where t_wb_type = 'Z' and t_wb_year = " & gin_finid & "  and t_wb_compcode = " & compcode & "  and t_wb_date = '" & Format(dt_ticket, "yyyy-MM-dd") & "'"
          adocmd_mysql.CommandText = pst_qry
          Set adors = adocmd_mysql.Execute
          If adors("tikcetno") = 1 Then
@@ -1204,6 +1204,17 @@ Private Sub cmd_Save_Click()
         & " '" & Trim(Left(cmb_material.Text, 39)) & " ' , '" & Left(cmb_supplier.Text, 49) & "' , '', '" & wt_type & "' , " & first_sec_wt & " ,'" & Format(dt_ticket2.Value, "yyyy-MM-dd HH:MM:SS") & "','" & wbtype & " ')  "
         adocmd_mysql.CommandText = pst_qry
         Set adors = adocmd_mysql.Execute
+
+
+      If wbtype = "Z" Then
+          pst_qry = "insert into shvpmtrn_weighbridge_entry (t_wb_year, t_wb_compcode, t_wb_ticketno, t_wb_date, t_wb_vehicle,t_wb_type) values ( " & gin_finid & " ," & compcode & " ," & Val(txt_ticketNo.Text) & " ,'" & Format(dt_ticket, "yyyy-MM-dd") & "' , '" & truck & "','Z')"
+          adocmd_mysql.CommandText = pst_qry
+          Set adors = adocmd_mysql.Execute
+      
+      End If
+
+
+
 ''        MsgBox ("First Entry Saved...")
         savemsg = "First Entry Saved...  "
        

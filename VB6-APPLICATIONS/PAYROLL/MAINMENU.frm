@@ -300,6 +300,9 @@ Begin VB.MDIForm MAINMENU
          Caption         =   "GROSS PAY STATEMENT"
          Visible         =   0   'False
       End
+      Begin VB.Menu mu_factory_acts 
+         Caption         =   "FACTORY ACT REPORTS"
+      End
       Begin VB.Menu mnu_master_details 
          Caption         =   "MASTER DETAILS"
       End
@@ -854,6 +857,11 @@ Private Sub pay_calc_retainer_Click()
      pay_calchk = 3
      emptype_chk = 3
      pay_cal.Show
+End Sub
+
+Private Sub mu_factory_acts_Click()
+    frm_factory_act_reports.Show
+    frm_factory_act_reports.ZOrder
 End Sub
 
 Private Sub pay_calculation_Click()

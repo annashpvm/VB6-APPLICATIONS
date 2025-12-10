@@ -93,6 +93,7 @@ Form=emp_mas_detail_modifications.frm
 Form=frm_ot_import.frm
 Form=emp_worked_position_mechanical.frm
 Form=emp_worked_position_Production.frm
+Form=frm_factory_act_reports.frm
 IconForm="MAINMENU"
 Startup="Sub Main"
 HelpFile=""

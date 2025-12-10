@@ -204,7 +204,7 @@ Begin VB.Form Salary_statement_prt
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   131792897
+         Format          =   115802113
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -216,7 +216,7 @@ Begin VB.Form Salary_statement_prt
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   131792897
+         Format          =   115802113
          CurrentDate     =   39359
       End
       Begin VB.Label Label10 
@@ -351,7 +351,7 @@ Begin VB.Form Salary_statement_prt
                _ExtentX        =   2778
                _ExtentY        =   661
                _Version        =   393216
-               Format          =   131792897
+               Format          =   115802113
                CurrentDate     =   39359
             End
          End
@@ -447,6 +447,15 @@ Begin VB.Form Salary_statement_prt
          TabIndex        =   1
          Top             =   0
          Width           =   8640
+         Begin VB.OptionButton opt_wages_fact_act 
+            Caption         =   "Wages StateMent (Factory Act)"
+            Height          =   405
+            Left            =   480
+            TabIndex        =   60
+            Top             =   4200
+            Value           =   -1  'True
+            Width           =   2655
+         End
          Begin VB.OptionButton opt_voucher_salary_manager 
             Caption         =   "Voucher Salary - Managers"
             Height          =   405
@@ -456,7 +465,8 @@ Begin VB.Form Salary_statement_prt
             Width           =   3495
          End
          Begin VB.OptionButton opt_voucher_salary 
-            Caption         =   "Voucher Salary - for 1/2 Absent"
+            Caption         =   "Voucher Salary - for 1/2 Present 1/2 Absent"
+            CausesValidation=   0   'False
             Height          =   405
             Left            =   480
             TabIndex        =   58
@@ -531,7 +541,7 @@ Begin VB.Form Salary_statement_prt
             Height          =   405
             Left            =   480
             TabIndex        =   51
-            Top             =   720
+            Top             =   840
             Width           =   3495
          End
          Begin VB.Frame frame_salary 
@@ -670,7 +680,6 @@ Begin VB.Form Salary_statement_prt
             Left            =   480
             TabIndex        =   13
             Top             =   240
-            Value           =   -1  'True
             Width           =   2655
          End
       End
@@ -733,7 +742,7 @@ End With
 
 End Sub
 
-Private Sub exit_Click()
+Private Sub EXIT_Click()
    Unload Me
 End Sub
 Private Sub Form_Load()
@@ -1181,13 +1190,20 @@ Private Sub PROCESS_Click()
    
    cry_rep1.Formulas(6) = ("report_year = " & Val(cmb_year.Text))
    
-
-   If opt_voucher_salary.Value = True Then
+   If opt_wages_fact_act.Value = True Then
+       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\salary_statement_fact_act.rpt"
+        cry_rep1.ReplaceSelectionFormula ("{emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_salary.s_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
+                                      "and {emp_salary.s_company} = " & company_code & " and {emp_salary.s_salarydays} > 0  " & ds & "")
+   
+   ElseIf opt_voucher_salary.Value = True Then
    
          cry_rep1.Formulas(6) = ("noofdays_in_month = " & Val(noofdays_in_month))
          cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\Voucher_Payment.rpt"
-         cry_rep1.ReplaceSelectionFormula ("{bio_device_shiftlogs.ds_date} >=  date(" & Format$(st_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_date} <=  date(" & Format$(end_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_sft_hrs} > 8.50 and {bio_device_shiftlogs.ds_status} = '폩폗' and ({bio_device_shiftlogs.ds_fpcode} <>  1006 and {bio_device_shiftlogs.ds_fpcode} <>  1252  and {bio_device_shiftlogs.ds_fpcode} <>  1810 and {bio_device_shiftlogs.ds_fpcode} <>  1127 and {bio_device_shiftlogs.ds_fpcode} <>  3202 )")
-         
+         ''cry_rep1.ReplaceSelectionFormula ("{bio_device_shiftlogs.ds_date} >=  date(" & Format$(st_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_date} <=  date(" & Format$(end_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_sft_hrs} > 8.50 and {bio_device_shiftlogs.ds_status} = '폩폗' and ({bio_device_shiftlogs.ds_fpcode} <>  1006 and {bio_device_shiftlogs.ds_fpcode} <>  1252  and {bio_device_shiftlogs.ds_fpcode} <>  1810 and {bio_device_shiftlogs.ds_fpcode} <>  1127 and {bio_device_shiftlogs.ds_fpcode} <>  3202 ) ")
+         qry = "{bio_device_shiftlogs.ds_date} >=  date(" & Format$(st_date, "yyyy,mm,dd") & ") and {bio_device_shiftlogs.ds_date} <=  date(" & Format$(end_date, "yyyy,mm,dd") & ")  and {bio_device_shiftlogs.ds_status} = '폩폗' and ({bio_device_shiftlogs.ds_fpcode} <>  1006 and {bio_device_shiftlogs.ds_fpcode} <>  1252  and {bio_device_shiftlogs.ds_fpcode} <>  1810 and {bio_device_shiftlogs.ds_fpcode} <>  1127 and {bio_device_shiftlogs.ds_fpcode} <>  3202 ) and (({emp_mas.emp_cat} = 'W' AND {bio_device_shiftlogs.ds_sft_hrs} > 7.50 ) or ({emp_mas.emp_cat} <> 'W' AND {bio_device_shiftlogs.ds_sft_hrs} > 8.50))"
+
+         cry_rep1.ReplaceSelectionFormula (qry)
+
    ElseIf opt_voucher_salary_manager.Value = True Then
          cry_rep1.Formulas(6) = ("noofdays_in_month = " & Val(noofdays_in_month))
          cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\Voucher_Payment_manager.rpt"
@@ -1200,7 +1216,7 @@ Private Sub PROCESS_Click()
    
       
       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\bank_salary_statement_abstract.rpt"
-       If opt_Bank.Value = True Then
+       If opt_bank.Value = True Then
            cry_rep1.Formulas(6) = ("salary_type = 'BANK'")
             cry_rep1.ReplaceSelectionFormula ("{emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_salary.s_month}= " & cmb_month.ItemData(cmb_month.ListIndex) & _
                                      " and {emp_salary.s_salary_bank} = 1 and {emp_salary.s_company} = " & company_code & " and {emp_salary.s_salarydays} > 0  " & ds & "")

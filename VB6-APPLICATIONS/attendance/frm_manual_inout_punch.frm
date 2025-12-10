@@ -9,9 +9,35 @@ Begin VB.Form frm_manual_inout_punch
    ClientWidth     =   17025
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   8910
+   ScaleWidth      =   17025
    WindowState     =   2  'Maximized
+   Begin VB.Frame Frame8 
+      Caption         =   "Password"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   480
+      TabIndex        =   56
+      Top             =   8880
+      Width           =   2895
+      Begin VB.TextBox txtPassword 
+         Height          =   405
+         IMEMode         =   3  'DISABLE
+         Left            =   360
+         PasswordChar    =   "$"
+         TabIndex        =   57
+         Top             =   360
+         Width           =   1575
+      End
+   End
    Begin VB.CommandButton Command1 
       Caption         =   "Command1"
       Height          =   375
@@ -64,19 +90,19 @@ Begin VB.Form frm_manual_inout_punch
       End
    End
    Begin VB.Frame Frame4 
-      Height          =   9015
+      Height          =   10215
       Left            =   11520
       TabIndex        =   50
-      Top             =   480
+      Top             =   120
       Width           =   8535
       Begin MSFlexGridLib.MSFlexGrid flx_data_summary 
-         Height          =   8295
-         Left            =   120
+         Height          =   9735
+         Left            =   240
          TabIndex        =   51
-         Top             =   360
+         Top             =   1320
          Width           =   8055
          _ExtentX        =   14208
-         _ExtentY        =   14631
+         _ExtentY        =   17171
          _Version        =   393216
          RowHeightMin    =   5
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -162,9 +188,9 @@ Begin VB.Form frm_manual_inout_punch
    End
    Begin VB.Frame Frame7 
       Height          =   975
-      Left            =   120
+      Left            =   360
       TabIndex        =   28
-      Top             =   9240
+      Top             =   10080
       Visible         =   0   'False
       Width           =   3735
       Begin MSComCtl2.DTPicker st_date 
@@ -176,7 +202,7 @@ Begin VB.Form frm_manual_inout_punch
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130940929
+         Format          =   131465217
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -188,7 +214,7 @@ Begin VB.Form frm_manual_inout_punch
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130940929
+         Format          =   131465217
          CurrentDate     =   39359
       End
       Begin VB.Label Label10 
@@ -421,7 +447,7 @@ Begin VB.Form frm_manual_inout_punch
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yyyy HH:mm:ss"
-            Format          =   130940931
+            Format          =   131465219
             CurrentDate     =   42294
          End
          Begin MSComCtl2.DTPicker dt_date_out 
@@ -444,7 +470,7 @@ Begin VB.Form frm_manual_inout_punch
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "dd/MM/yyyy HH:mm:ss"
-            Format          =   130940931
+            Format          =   131465219
             CurrentDate     =   42294
          End
          Begin VB.Label lbl_out 
@@ -611,8 +637,8 @@ Begin VB.Form frm_manual_inout_punch
          Left            =   240
          TabIndex        =   16
          Top             =   3840
-         Width           =   6615
-         _ExtentX        =   11668
+         Width           =   7335
+         _ExtentX        =   12938
          _ExtentY        =   5953
          _Version        =   393216
       End
@@ -803,9 +829,9 @@ Begin VB.Form frm_manual_inout_punch
    End
    Begin MSFlexGridLib.MSFlexGrid flx_dataold 
       Height          =   1455
-      Left            =   10320
+      Left            =   7680
       TabIndex        =   44
-      Top             =   9720
+      Top             =   10080
       Visible         =   0   'False
       Width           =   5655
       _ExtentX        =   9975
@@ -946,6 +972,7 @@ Private Sub cmd_filter_Click()
         flx_data.TextMatrix(i, 3) = payrs!ad_auto
         flx_data.TextMatrix(i, 4) = payrs!ad_logslno
         flx_data.TextMatrix(i, 5) = payrs!ad_punch
+        flx_data.TextMatrix(i, 6) = "N"
         flx_data.Rows = flx_data.Rows + 1
         flx_dataold.TextMatrix(i, 0) = i
         flx_dataold.TextMatrix(i, 1) = Format(payrs!ad_date, "dd/MM/yyyy")
@@ -953,6 +980,7 @@ Private Sub cmd_filter_Click()
         flx_dataold.TextMatrix(i, 3) = payrs!ad_auto
         flx_dataold.TextMatrix(i, 4) = payrs!ad_logslno
         flx_dataold.TextMatrix(i, 5) = payrs!ad_punch
+        flx_dataold.TextMatrix(i, 6) = "N"
         flx_dataold.Rows = flx_dataold.Rows + 1
         
         payrs.MoveNext
@@ -1026,8 +1054,16 @@ On Error GoTo err_handler
                
                sql = "insert into bio_devicelogs (ad_fpcode,ad_empid,ad_logslno,ad_date,ad_logdate,ad_auto,ad_upd,ad_punch) values (" & txt_fpcode.Text & ", " & txt_idcode.Text & ",'" & flx_data.TextMatrix(i, 4) & "', '" & Format(sdate, "MM/dd/yyyy") & "', '" & Format(inout_time, "MM/dd/yyyy HH:MM:SS") & "','M','N','" & flx_data.TextMatrix(i, 5) & "')"
                paydb.Execute sql
-
             End If
+            
+            If flx_data.TextMatrix(i, 3) = "A" And txtPassword = "shvpm" And flx_data.TextMatrix(i, 6) = "Y" Then
+               sdate = Format(flx_data.TextMatrix(i, 1), "dd/MM/yyyy")
+               inout_time = Format(flx_data.TextMatrix(i, 2), "dd/MM/yyyy HH:MM:SS")
+               sql = "delete from bio_devicelogs where ad_fpcode =  " & txt_fpcode.Text & "  and ad_date = '" & Format(sdate, "yyyy/MM/dd") & "' and ad_logdate =  '" & Format(inout_time, "yyyy/MM/dd HH:MM:SS") & "' and ad_auto = 'A'"
+               paydb.Execute sql
+            End If
+            
+            
         End If
     Next
 
@@ -1094,6 +1130,10 @@ Private Sub Command1_Click()
     payrs.Close
 End Sub
 
+Private Sub Command2_Click()
+
+End Sub
+
 Private Sub dt_date_in_Change()
       dt_date_out.Value = dt_date_in.Value
 End Sub
@@ -1105,12 +1145,16 @@ End Sub
 Private Sub flx_data_DblClick()
    If del_inout = 0 Then Exit Sub
    flex_edit_row = 0
-   Dim fin_selrow As Integer
+   Dim fin_selrow, fin_selcol  As Integer
    Dim pst_ans As String
    fin_selrow = flx_data.Row
-
+   fin_selcol = flx_data.Col
    timchk = 0
    With flx_data
+       If fin_selcol = 6 And flx_data.TextMatrix(.Row, 3) = "A" And txtPassword = "shvpm" Then
+           flx_data.TextMatrix(.Row, 6) = "Y"
+       End If
+       
        If flx_data.TextMatrix(.Row, 3) = "A" Then Exit Sub
        pst_ans = MsgBox("Press YES-to DELETE  NO-to CANCEL", vbYesNo, "Confirmation")
        If pst_ans = 6 Then
@@ -1216,19 +1260,22 @@ Private Sub fillgrid()
      .Redraw = False
      .Clear
      .Rows = 2
-     .Cols = 6
+     .Cols = 7
      .TextMatrix(0, 0) = "S.No"
      .TextMatrix(0, 1) = "Date"
      .TextMatrix(0, 2) = "Log Time"
      .TextMatrix(0, 3) = "Log"
      .TextMatrix(0, 4) = "Logid"
      .TextMatrix(0, 5) = "Punch"
+     .TextMatrix(0, 6) = "delete"
+     
      .ColWidth(0) = 500
      .ColWidth(1) = 1500
      .ColWidth(2) = 2000
      .ColWidth(3) = 500
      .ColWidth(4) = 0
      .ColWidth(5) = 1000
+     .ColWidth(6) = 600
      .Redraw = True
    End With
 
@@ -1236,19 +1283,22 @@ Private Sub fillgrid()
      .Redraw = False
      .Clear
      .Rows = 2
-     .Cols = 6
+     .Cols = 7
      .TextMatrix(0, 0) = "S.No"
      .TextMatrix(0, 1) = "Date"
      .TextMatrix(0, 2) = "Log Time"
      .TextMatrix(0, 3) = "Log"
      .TextMatrix(0, 4) = "Logid"
      .TextMatrix(0, 5) = "Punch"
+     .TextMatrix(0, 6) = "delete"
      .ColWidth(0) = 500
      .ColWidth(1) = 1500
      .ColWidth(2) = 2000
      .ColWidth(3) = 500
      .ColWidth(4) = 0
      .ColWidth(5) = 1000
+     .ColWidth(6) = 600
+     
      .Redraw = True
    End With
    ''Added by Jackuline on 13 Mar 2021

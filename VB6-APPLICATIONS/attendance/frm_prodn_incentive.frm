@@ -9,8 +9,8 @@ Begin VB.Form frm_overtime
    ClientWidth     =   14460
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   9900
+   ScaleWidth      =   14460
    Visible         =   0   'False
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame5 
@@ -266,7 +266,7 @@ Begin VB.Form frm_overtime
          _ExtentX        =   2566
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   130154497
+         Format          =   129368065
          CurrentDate     =   44558
       End
       Begin VB.Label Label4 

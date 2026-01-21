@@ -459,14 +459,14 @@ Private Sub print_Click()
 
    
    If opt1.Value = True Then
-          pst_qry = "{emp_salary.s_company}= " & company_code & " and {emp_salary.s_finyear} = " & finyear & " "
+          pst_qry = "{emp_salary.s_company}= " & company_code & " and {emp_salary.s_year} = " & Val(cmb_year.Text) & " "
    Else
       If opt2.Value = True Then
 ''          pst_qry = " {emp_mas.emp_pfeligible} = 'Y' and {emp_salary.s_company}= " & company_code & " and (({emp_salary.s_year} = " & Val(cmb_year_from.Text) & "  and {emp_salary.s_month} >= " & cmb_month_from.ItemData(cmb_month_from.ListIndex) & " ) or ({emp_salary.s_year} =  " & Val(cmb_year_to.Text) & " and {emp_salary.s_month} <= " & cmb_month_to.ItemData(cmb_month_to.ListIndex) & ") )"
-          pst_qry = "{emp_mas.emp_pfeligible} = 'Y' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_finyear} = " & finyear & " "
+          pst_qry = "{emp_mas.emp_pfeligible} = 'Y' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_finyear} = " & Val(cmb_year.Text) & " "
       Else
   ''        pst_qry = " {emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and (({emp_salary.s_year} = " & Val(cmb_year_from.Text) & "  and {emp_salary.s_month} >= " & cmb_month_from.ItemData(cmb_month_from.ListIndex) & " ) or ({emp_salary.s_year} =  " & Val(cmb_year_to.Text) & " and {emp_salary.s_month} <= " & cmb_month_to.ItemData(cmb_month_to.ListIndex) & ") )"
-          pst_qry = "{emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_finyear} = " & finyear & ""
+          pst_qry = "{emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_finyear} = " & Val(cmb_year.Text) & ""
           
       End If
    End If

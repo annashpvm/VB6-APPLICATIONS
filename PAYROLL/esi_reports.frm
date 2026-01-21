@@ -27,7 +27,7 @@ Begin VB.Form esi_reports_frm
       Top             =   480
       Width           =   8895
       Begin VB.Frame Frame2 
-         Height          =   1215
+         Height          =   1815
          Left            =   120
          TabIndex        =   15
          Top             =   720
@@ -51,7 +51,7 @@ Begin VB.Form esi_reports_frm
             Width           =   3855
          End
          Begin VB.OptionButton opt_rep2 
-            Caption         =   "ESI Statment - New Method"
+            Caption         =   "ESI Statment - for online file"
             BeginProperty Font 
                Name            =   "Arial"
                Size            =   9
@@ -63,11 +63,10 @@ Begin VB.Form esi_reports_frm
             EndProperty
             ForeColor       =   &H00C00000&
             Height          =   300
-            Left            =   5640
+            Left            =   480
             TabIndex        =   17
-            Top             =   360
-            Visible         =   0   'False
-            Width           =   1215
+            Top             =   1200
+            Width           =   3015
          End
          Begin VB.OptionButton opt_rep1 
             Caption         =   "ESI Statement"
@@ -303,7 +302,7 @@ Unload Me
 End Sub
 
 Private Sub Form_Load()
- opt_all.Value = True
+ opt_All.Value = True
     With cmb_month
         .AddItem "January"
         .ItemData(.NewIndex) = 1
@@ -369,7 +368,7 @@ Private Sub print_Click()
       cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\ESI_statement_deptwise.rpt"
    Else
    
-      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\ESI_statement_workeddays.rpt"
+      cry_rep1.ReportFileName = "\\10.0.0.252\vbcryrep\PAYROLL\esi_statement_forfile.rpt"
    End If
     
     If opt_staff.Value = True Then
@@ -404,5 +403,5 @@ Private Sub print_Click()
 End Sub
 
 Private Sub refresh_Click()
-opt_all.Value = True
+opt_All.Value = True
 End Sub

@@ -9,8 +9,8 @@ Begin VB.Form ReelWeigt
    ClientTop       =   450
    ClientWidth     =   6750
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   5385
+   ScaleWidth      =   6750
    StartUpPosition =   1  'CenterOwner
    WindowState     =   2  'Maximized
    Begin VB.CommandButton cmd_Port_Setting 
@@ -639,7 +639,7 @@ Begin VB.Form ReelWeigt
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   132579329
+         Format          =   130482177
          CurrentDate     =   44676
       End
       Begin MSComCtl2.DTPicker dt_proddate 
@@ -660,7 +660,7 @@ Begin VB.Form ReelWeigt
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   132579329
+         Format          =   130482177
          CurrentDate     =   44676
       End
       Begin VB.Label Label20 

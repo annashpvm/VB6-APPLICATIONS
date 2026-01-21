@@ -10,8 +10,8 @@ Begin VB.Form cl_wages_statement
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   10935
-   ScaleWidth      =   20160
+   ScaleHeight     =   3195
+   ScaleWidth      =   4680
    Visible         =   0   'False
    WindowState     =   2  'Maximized
    Begin VB.Frame Frame7 
@@ -30,7 +30,7 @@ Begin VB.Form cl_wages_statement
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   112001025
+         Format          =   130416641
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -42,7 +42,7 @@ Begin VB.Form cl_wages_statement
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   112001025
+         Format          =   130416641
          CurrentDate     =   39359
       End
       Begin VB.Label Label9 
@@ -94,7 +94,7 @@ Begin VB.Form cl_wages_statement
       Height          =   855
       Left            =   4680
       TabIndex        =   6
-      Top             =   6480
+      Top             =   7320
       Width           =   1695
       Begin VB.CommandButton PRINT 
          BackColor       =   &H00C0C0FF&
@@ -151,7 +151,7 @@ Begin VB.Form cl_wages_statement
          Height          =   855
          Left            =   600
          TabIndex        =   11
-         Top             =   4200
+         Top             =   4920
          Visible         =   0   'False
          Width           =   9015
          Begin VB.OptionButton opt_emptypeall 
@@ -181,11 +181,29 @@ Begin VB.Form cl_wages_statement
          End
       End
       Begin VB.Frame Frame4 
-         Height          =   3735
+         Height          =   4575
          Left            =   480
          TabIndex        =   9
          Top             =   240
          Width           =   9615
+         Begin VB.OptionButton opt4 
+            Caption         =   "Cash"
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00C00000&
+            Height          =   420
+            Left            =   480
+            TabIndex        =   29
+            Top             =   2640
+            Width           =   5775
+         End
          Begin VB.Frame Frame5 
             Height          =   855
             Left            =   120
@@ -279,7 +297,7 @@ Begin VB.Form cl_wages_statement
             Height          =   405
             Left            =   3360
             TabIndex        =   17
-            Top             =   2880
+            Top             =   3720
             Width           =   1335
          End
          Begin VB.OptionButton opt3 
@@ -350,9 +368,9 @@ Begin VB.Form cl_wages_statement
             EndProperty
             ForeColor       =   &H00FF0000&
             Height          =   285
-            Left            =   2160
+            Left            =   2040
             TabIndex        =   18
-            Top             =   2880
+            Top             =   3720
             Width           =   885
          End
       End
@@ -368,9 +386,9 @@ Begin VB.Form cl_wages_statement
             Strikethrough   =   0   'False
          EndProperty
          Height          =   465
-         Left            =   480
+         Left            =   360
          TabIndex        =   1
-         Top             =   3720
+         Top             =   4320
          Visible         =   0   'False
          Width           =   705
          Begin VB.OptionButton opt_wt 
@@ -538,16 +556,22 @@ Private Sub print_Click()
 
    
    If opt1.Value = True Then
+          cry_rep1.Formulas(4) = ("opt=0")
           pst_qry = "{emp_salary.s_company}= " & company_code & " and {emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_mas.EMP_DOJ} <   date(" & Format(st_date.Value, "yyyy,mm,dd") & ") "
-   Else
-      If opt2.Value = True Then
+   ElseIf opt2.Value = True Then
+          cry_rep1.Formulas(4) = ("opt=1")
 ''          pst_qry = " {emp_mas.emp_pfeligible} = 'Y' and {emp_salary.s_company}= " & company_code & " and (({emp_salary.s_year} = " & Val(cmb_year_from.Text) & "  and {emp_salary.s_month} >= " & cmb_month_from.ItemData(cmb_month_from.ListIndex) & " ) or ({emp_salary.s_year} =  " & Val(cmb_year_to.Text) & " and {emp_salary.s_month} <= " & cmb_month_to.ItemData(cmb_month_to.ListIndex) & ") )"
-          pst_qry = "{emp_mas.emp_pfeligible} = 'Y' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_mas.EMP_DOJ} <   date(" & Format(st_date.Value, "yyyy,mm,dd") & ") "
-      Else
-  ''        pst_qry = " {emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and (({emp_salary.s_year} = " & Val(cmb_year_from.Text) & "  and {emp_salary.s_month} >= " & cmb_month_from.ItemData(cmb_month_from.ListIndex) & " ) or ({emp_salary.s_year} =  " & Val(cmb_year_to.Text) & " and {emp_salary.s_month} <= " & cmb_month_to.ItemData(cmb_month_to.ListIndex) & ") )"
-          pst_qry = "{emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_mas.EMP_DOJ} <   date(" & Format(st_date.Value, "yyyy,mm,dd") & ") "
+          pst_qry = "{emp_mas.emp_bank} = 1 and  {emp_mas.emp_pfeligible} = 'Y' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_mas.EMP_DOJ} <   date(" & Format(st_date.Value, "yyyy,mm,dd") & ") "
+   ElseIf opt3.Value = True Then
+          cry_rep1.Formulas(4) = ("opt=2")
+''          pst_qry = " {emp_mas.emp_pfeligible} = 'Y' and {emp_salary.s_company}= " & company_code & " and (({emp_salary.s_year} = " & Val(cmb_year_from.Text) & "  and {emp_salary.s_month} >= " & cmb_month_from.ItemData(cmb_month_from.ListIndex) & " ) or ({emp_salary.s_year} =  " & Val(cmb_year_to.Text) & " and {emp_salary.s_month} <= " & cmb_month_to.ItemData(cmb_month_to.ListIndex) & ") )"
+          pst_qry = "{emp_mas.emp_bank} = 1 and  {emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_mas.EMP_DOJ} <   date(" & Format(st_date.Value, "yyyy,mm,dd") & ") "
           
-      End If
+    Else
+         cry_rep1.Formulas(4) = ("opt=3")
+  ''        pst_qry = " {emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and (({emp_salary.s_year} = " & Val(cmb_year_from.Text) & "  and {emp_salary.s_month} >= " & cmb_month_from.ItemData(cmb_month_from.ListIndex) & " ) or ({emp_salary.s_year} =  " & Val(cmb_year_to.Text) & " and {emp_salary.s_month} <= " & cmb_month_to.ItemData(cmb_month_to.ListIndex) & ") )"
+          pst_qry = "{emp_mas.emp_bank} <> 1 and  {emp_mas.emp_pfeligible} = 'N' and {emp_salary.s_company}= " & company_code & " and {emp_salary.s_year} = " & Val(cmb_year.Text) & " and {emp_mas.EMP_DOJ} <   date(" & Format(st_date.Value, "yyyy,mm,dd") & ") "
+          
    End If
    
 

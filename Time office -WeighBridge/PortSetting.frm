@@ -55,7 +55,7 @@ Begin VB.Form PortSetting
       Height          =   420
       ItemData        =   "PortSetting.frx":0000
       Left            =   3480
-      List            =   "PortSetting.frx":0010
+      List            =   "PortSetting.frx":0016
       TabIndex        =   0
       Top             =   600
       Width           =   1455

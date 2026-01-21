@@ -1,4 +1,4 @@
-ModMadeupsColor = 104, 104, 883, 520, 
+ModMadeupsColor = 104, 104, 883, 520, Z
 ModMadeupsErrorHandler = 78, 78, 1051, 377, 
 frm_login = 208, 208, 987, 624, , 208, 208, 987, 624, C
 frm_mainmenu = 104, 104, 883, 520, , 78, 78, 857, 494, C
@@ -9,4 +9,4 @@ frm_party_master = 0, 0, 0, 0, C, 78, 78, 857, 494, C
 frm_import = 130, 130, 909, 546, , 104, 104, 883, 520, C
 frm_duplicate_ticket = 52, 52, 831, 468, , 130, 130, 909, 546, C
 frm_reports = 78, 78, 857, 494, , 156, 156, 935, 572, C
-PortSetting = 26, 26, 805, 442, Z, 0, 0, 779, 416, C
+PortSetting = 26, 26, 805, 442, , 0, 0, 779, 416, C

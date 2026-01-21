@@ -27,7 +27,7 @@ Begin VB.Form pay_cal
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   126681089
+         Format          =   122224641
          CurrentDate     =   39359
       End
       Begin MSComCtl2.DTPicker end_date 
@@ -39,7 +39,7 @@ Begin VB.Form pay_cal
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   126681089
+         Format          =   122224641
          CurrentDate     =   39359
       End
       Begin VB.Label Label4 
@@ -516,6 +516,10 @@ On Error GoTo err_handler
         Exit Sub
     End If
   
+    Dim newESIEligibleYN, ESIEligibleFor As String
+    
+    Dim ESI_EL_Amount1, ESI_EL_Amount2, newESIEligible_Amount As Double
+    
     
     Dim cyear As Integer
     Dim payrs As New ADODB.Recordset
@@ -647,7 +651,23 @@ On Error GoTo err_handler
 ''           MsgBox "Wait"
 ''       End If
        Dim employeecode As Integer
+       
        employeecode = payrs.Fields("emp_code")
+       
+       
+       ESI_EL_Amount1 = payrs.Fields("emp_basic") + payrs.Fields("emp_fda")
+       ESI_EL_Amount2 = Round(payrs.Fields("emp_grosspay") / 2, 2)
+       
+       ESIEligibleFor = "B"
+       newESIEligible_Amount = 0
+       If ESI_EL_Amount1 >= 21000 Or ESI_EL_Amount2 >= 21000 Then
+           newESIEligibleYN = "N"
+       Else
+           newESIEligibleYN = "Y"
+       End If
+       
+
+       
        
 ''       If employeecode = 3146 Then
 ''          MsgBox (employeecode)
@@ -666,6 +686,8 @@ On Error GoTo err_handler
        
 ''       mess_subsidy_days = payrs.Fields("attn_work_days") + payrs.Fields("attn_dec_holiday")
 
+
+       
        
        grosspay = payrs.Fields("emp_basic") + _
               payrs.Fields("emp_splpay") + _
@@ -723,16 +745,28 @@ On Error GoTo err_handler
                       Round(payrs.Fields("emp_othall") / payrs.Fields("attn_act_wdays") * payrs.Fields("attn_salary_days"), 0)
 
 
-                If grosspay < esi_eligible And payrs.Fields("emp_esieligible") = "Y" Then
-                      ei_esi_ded2 = Round(Round(el_gpay + otamt, 0) * esi_contri / 100, 0)
-                      ei_esi_ded = Round(el_gpay + otamt, 0) * esi_contri / 100
-                      If ei_esi_ded > ei_esi_ded2 Then
-                         ei_esi_ded = Round(Round(el_gpay + otamt, 0) * esi_contri / 100, 0) + 1
-                      End If
-                End If
+''                If grosspay < esi_eligible And payrs.Fields("emp_esieligible") = "Y" Then
+''                      ei_esi_ded2 = Round(Round(el_gpay + otamt, 0) * esi_contri / 100, 0)
+''                      ei_esi_ded = Round(el_gpay + otamt, 0) * esi_contri / 100
+''                      If ei_esi_ded > ei_esi_ded2 Then
+''                         ei_esi_ded = Round(Round(el_gpay + otamt, 0) * esi_contri / 100, 0) + 1
+''                      End If
+''                End If
+                
 
-                ei_esi_ded = Round(ei_esi_ded, 0)
-
+       If newESIEligibleYN = "Y" Then
+           If ESI_EL_Amount1 > ESI_EL_Amount2 Then
+              ESIEligibleFor = "B"
+              newESIEligible_Amount = Round(payrs.Fields("emp_basic") / payrs.Fields("attn_act_wdays") * payrs.Fields("attn_salary_days"), 0) + Round(payrs.Fields("emp_fda") / payrs.Fields("attn_act_wdays") * payrs.Fields("attn_salary_days"), 0)
+           Else
+              ESIEligibleFor = "G"
+              newESIEligible_Amount = Round(el_gpay / 2, 0)
+           End If
+       End If
+       
+       
+       
+       
 
 ''       el_gpay = 0
 ''
@@ -946,6 +980,21 @@ On Error GoTo err_handler
        
        ''payrs2.Fields("s_pfded") = IIf(payrs.Fields("attn_salary_days") > 0, payrs.Fields("emp_pfded"), 0)
        
+       
+                 If newESIEligibleYN = "Y" And newESIEligible_Amount > 0 Then
+                 
+                      ei_esi_ded2 = Round(Round(newESIEligible_Amount + otamt, 0) * esi_contri / 100, 0)
+                      ei_esi_ded = Round(newESIEligible_Amount + otamt, 0) * esi_contri / 100
+                      If ei_esi_ded > ei_esi_ded2 Then
+                         ei_esi_ded = Round(Round(newESIEligible_Amount + otamt, 0) * esi_contri / 100, 0) + 1
+                      End If
+                End If
+                
+
+                ei_esi_ded = Round(ei_esi_ded, 0)
+       
+       
+       
        payrs2.Fields("s_esi_ded") = ei_esi_ded
        
        
@@ -961,6 +1010,8 @@ On Error GoTo err_handler
        payrs2.Fields("s_netpay") = Round(netpay, 0)
        payrs2.Fields("s_salary_bank") = payrs.Fields("emp_bank")
        payrs2.Fields("s_otamount") = Round(otamt, 0)
+       payrs2.Fields("s_esi_ded_for_amount") = Round(newESIEligible_Amount, 0)
+       
        payrs2.Update
 
 ''       If employee_type = 2 Or employee_type = 3 Then

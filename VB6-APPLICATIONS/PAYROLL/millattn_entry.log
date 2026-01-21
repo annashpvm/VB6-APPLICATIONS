@@ -1,0 +1,4 @@
+Line 99: Class MSComCtl2.DTPicker of control st_date was not a loaded control class.
+Line 111: Class MSComCtl2.DTPicker of control end_date was not a loaded control class.
+Line 268: Class MSFlexGridLib.MSFlexGrid of control att_flex was not a loaded control class.
+Line 293: Class MSComDlg.CommonDialog of control CommonDialog1 was not a loaded control class.
